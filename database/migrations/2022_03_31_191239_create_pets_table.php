@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name', 30);
             $table->foreignId('owner_id');
+            $table->date('birth_date');
             $table->enum('sex',['M', 'F']);
             $table->string('species',45);
             $table->string('breed', 45);

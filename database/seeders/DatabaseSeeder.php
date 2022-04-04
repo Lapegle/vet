@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Owner;
+use App\Models\Pet;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Owner::factory(5)
+            ->hasPets(3)
+            ->create();
     }
 }

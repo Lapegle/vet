@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('owners', function (Blueprint $table) {
             $table->mediumIncrements('id');
             $table->timestamps();
             $table->string('name', 45);
