@@ -19,7 +19,6 @@ class PetFactory extends Factory
     {
         return [
             'name' => $this->faker->firstName(),
-            'owner_id' => Owner::factory(),
             'birth_date' => $this->faker->dateTimeBetween('-10 years', '-2 years'),
             'sex' => $this->faker->randomElement(['M', 'F']),
             'species' => $this->faker->randomElement(['Dog', 'Cat']),

@@ -9,9 +9,11 @@ class UsedManipulation extends Model
 {
     use HasFactory;
 
-    public function medicament()
+    public $timestamps = false;
+
+    public function manipulation()
     {
-        $this->belongsTo(Medicament::class);
+        $this->belongsTo(Manipulation::class);
     }
 
     public function visit()

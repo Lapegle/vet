@@ -25,6 +25,6 @@ class Visit extends Model
 
     public function usedManipulations()
     {
-        return $this->hasMany(UsedManipulations::class);
+        return $this->hasMany(UsedManipulation::class);
     }
 }
