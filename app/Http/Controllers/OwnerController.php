@@ -19,14 +19,19 @@ class OwnerController extends Controller
 
     public function store(Request $request)
     {
-        return Owner::create($request->all());
+        $owner = Owner::create($request->all());
+        return response()->json($owner, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Owner $owner)
     {
-        $owner = Owner::findOrFail($id);
         $owner->update($request->all());
+        return response()->json($owner, 200);
+    }
 
-        return $owner;
+    public function delete(Owner $owner)
+    {
+        $owner->delete();
+        return response()->json(null, 204);
     }
 }

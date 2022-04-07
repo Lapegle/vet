@@ -9,9 +9,9 @@ class Visit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['temperature', 'heart_rate', 'breath_rate', 'mood', 'history', 'diagnosis', 'instructions', 'notes', 'price'];
+    protected $fillable = ['pet_id', 'temperature', 'heart_rate', 'breath_rate', 'mood', 'history', 'diagnosis', 'instructions', 'notes', 'price'];
 
-    protected $with = ['pet_id'];
+//    protected $with = ['pet_id'];
 
     public function pet()
     {
