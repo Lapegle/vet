@@ -14,12 +14,12 @@ class Pet extends Model
 //    protected $with = ['owner_id'];
 
 
-    public function visit()
+    public function visits()
     {
         return $this->hasMany(Visit::class);
     }
 
-    public function owners()
+    public function owner()
     {
         return $this->belongsTo(Owner::class);
     }

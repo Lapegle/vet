@@ -26,12 +26,14 @@ use App\Http\Controllers\OwnerController;
 
 Route::get('owners', [OwnerController::class, 'index']);
 Route::get('owners/{owner}', [OwnerController::class, 'show']);
+Route::get('owner/{owner}', [OwnerController::class, 'showPets']);
 Route::post('owners', [OwnerController::class, 'store']);
 Route::put('owners/{owner}', [OwnerController::class, 'update']);
 Route::delete('owners/{owner}', [OwnerController::class, 'delete']);
 
 Route::get('pets', [PetController::class, 'index']);
 Route::get('pets/{pet}', [PetController::class, 'show']);
+Route::get('pet/{pet}', [PetController::class, 'showVisits']);
 Route::post('pets', [PetController::class, 'store']);
 Route::put('pets/{pet}', [PetController::class, 'update']);
 Route::delete('pets/{pet}', [PetController::class, 'delete']);

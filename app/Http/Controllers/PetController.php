@@ -12,6 +12,11 @@ class PetController extends Controller
         return Pet::all();
     }
 
+    public function showVisits($id)
+    {
+        return Pet::with('visits')->find($id)->visits;
+    }
+
     public function show($id)
     {
         return Pet::find($id);

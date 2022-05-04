@@ -11,7 +11,7 @@ class Owner extends Model
 
     protected $fillable = ['name', 'address', 'phone'];
 
-    public function pet()
+    public function pets()
     {
         return $this->hasMany(Pet::class);
     }

@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/{path?}', 'welcome');
+Route::view('/{any}', 'Welcome')->where('any', '.*');

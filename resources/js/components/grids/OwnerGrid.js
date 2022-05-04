@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react'
 
-import { render } from 'react-dom'
+import { useNavigate } from 'react-router-dom'
 import { AgGridReact } from 'ag-grid-react'
 import { AG_GRID_LOCALE_LV } from './locale.lv.js'
 
@@ -8,14 +8,18 @@ import 'ag-grid-community/dist/styles/ag-grid.css'; // Core grid CSS, always nee
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'; // Optional theme CSS
 
 const OwnerGrid = () => {
+
+    const navigate = useNavigate();
+
     const gridRef = useRef()
     const [rowData, setRowData] = useState()
     
   
     const [columnDefs, setColumnDefs] = useState([
-      {field: 'name', filter: true},
-      {field: 'address'},
-      {field: 'phone'}
+      {headerName: 'Vārds un uzvārds', field: 'name', filter: true},
+      {headerName: 'Adrese', field: 'address'},
+      {headerName: 'Telefona numurs', field: 'phone', filter: true},
+      {headerName: '', field: 'id'}
     ])
   
     const defaultColDef = useMemo( () => ({
@@ -24,8 +28,8 @@ const OwnerGrid = () => {
     }))
   
     const cellClickedListener = useCallback( event => {
-      console.log('cellClicked', event.data.id);
-      window.location.href = 'http://localhost:8000/owners/' + event.data.id
+      //console.log('cellClicked', event.data.id);
+      navigate('/pets/owner/' + event.data.id )
     }, []);
   
     useEffect(() => {
@@ -34,9 +38,6 @@ const OwnerGrid = () => {
       .then(rowData => setRowData(rowData))
     }, []);
   
-    const buttonListener = useCallback( e => {
-      gridRef.current.api.deselectAll();
-    }, []);
 
 
    
@@ -46,9 +47,6 @@ const OwnerGrid = () => {
   
     return (
          <div>
-  
-       {/* Example using Grid's API */}
-       <button onClick={buttonListener}>Push Me</button>
   
        {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
        <div className="ag-theme-alpine" style={{width: '100%', height: 600}}>

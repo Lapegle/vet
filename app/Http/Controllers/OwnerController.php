@@ -17,6 +17,11 @@ class OwnerController extends Controller
         return Owner::find($id);
     }
 
+    public function showPets($id)
+    {
+        return Owner::with('pets')->find($id)->pets;
+    }
+
     public function store(Request $request)
     {
         $owner = Owner::create($request->all());

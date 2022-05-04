@@ -8,7 +8,7 @@ const Header = () => {
     <Navbar>
         <LinkContainer to='/'>
             <Navbar.Brand className='ms-2'>
-                <img src='logo.svg' alt='logo' />
+                <img src='/assets/logo.svg' alt='logo' />
             </Navbar.Brand>
         </LinkContainer>
 
