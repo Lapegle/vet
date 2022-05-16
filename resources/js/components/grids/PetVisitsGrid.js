@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react'
-
-import { render } from 'react-dom'
+import { useNavigate } from 'react-router-dom'
 import { AgGridReact } from 'ag-grid-react'
 import { AG_GRID_LOCALE_LV } from './locale.lv.js'
 import moment from 'moment'
@@ -9,6 +8,9 @@ import 'ag-grid-community/dist/styles/ag-grid.css'; // Core grid CSS, always nee
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'; // Optional theme CSS
 
 const PetVisitsGrid = (props) => {
+
+  const navigate = useNavigate()
+
     const gridRef = useRef()
     const [rowData, setRowData] = useState()
 
@@ -36,8 +38,7 @@ const PetVisitsGrid = (props) => {
     }))
   
     const cellClickedListener = useCallback( event => {
-
-      //window.location.href = 'http://localhost:8000/owners/' + event.data.id
+      navigate('/visit/' + event.data.id )
     }, []);
   
     useEffect(() => {

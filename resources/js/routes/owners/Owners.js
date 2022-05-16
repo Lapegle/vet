@@ -15,7 +15,8 @@ const Owners = () => {
     <div>
       <div className='mb-2'>
         <h2 className='d-inline'>Klienti</h2>
-        <Button variant='primary' className='d-inline float-end' onClick={() => navigate('/owners/create')}>Jauns klients</Button>
+        <Button variant='outline-primary' className='d-inline float-end' title='Pievienot jaunu klientu'
+         onClick={() => navigate('/owners/create')}><i className="bi bi-plus-lg"></i></Button>
       </div>
       <OwnerGrid /> 
     </div>

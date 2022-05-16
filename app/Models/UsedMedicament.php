@@ -9,6 +9,8 @@ class UsedMedicament extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['visit_id', 'medicament_id'];
+
     public $timestamps = false;
 
     public function medicament()

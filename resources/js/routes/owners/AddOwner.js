@@ -1,14 +1,12 @@
 import { React, useState } from 'react'
 
-import { LinkContainer } from 'react-router-bootstrap'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
-import { Axios } from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 
 const AddOwner = () => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const axios = require('axios').default
 
@@ -16,7 +14,8 @@ const AddOwner = () => {
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
 
-  const submit = () => {
+  const submit = (e) => {
+    e.preventDefault()
     axios.post('http://localhost:8000/api/owners', {
       name: name,
       address: address,
@@ -24,17 +23,21 @@ const AddOwner = () => {
     })
     .then((response) => {
       navigate('/pets/owner/' + response.data.id)
+    }).catch(() => {
+      alert('error')
     })
+
   }
 
   return (
     <>
-    <h1 className='mb-4'>Pievienot jaunu klientu</h1>
-    <Form action=''>
+    <h2 className='mb-4 text-center'>Pievienot jaunu klientu</h2>
+    <div className='d-flex justify-content-center'>
+    <Form onSubmit={submit} className="w-50">
       <Form.Group className="mb-3" controlId='name'>
         <FloatingLabel
           controlId='name'
-          label='Vārds'
+          label='Vārds un uzvārds'
           >
           <Form.Control type='text' placeholder='Jānis Bērziņš'
             onChange={(e) => {setName(e.target.value)}}
@@ -61,8 +64,10 @@ const AddOwner = () => {
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
-      <Button variant='primary' onClick={submit}>Pievienot</Button>
+      <Button type='submit' variant='primary'>Pievienot</Button>
     </Form>
+    </div>
+
     </>
 
   )

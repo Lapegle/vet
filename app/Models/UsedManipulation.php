@@ -9,6 +9,8 @@ class UsedManipulation extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['visit_id', 'manipulation_id'];
+
     public $timestamps = false;
 
     public function manipulation()

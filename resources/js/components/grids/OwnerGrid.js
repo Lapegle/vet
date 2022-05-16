@@ -18,8 +18,7 @@ const OwnerGrid = () => {
     const [columnDefs, setColumnDefs] = useState([
       {headerName: 'Vārds un uzvārds', field: 'name', filter: true},
       {headerName: 'Adrese', field: 'address'},
-      {headerName: 'Telefona numurs', field: 'phone', filter: true},
-      {headerName: '', field: 'id'}
+      {headerName: 'Telefona numurs', field: 'phone', filter: true}
     ])
   
     const defaultColDef = useMemo( () => ({
