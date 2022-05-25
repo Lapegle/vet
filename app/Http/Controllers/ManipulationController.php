@@ -9,7 +9,7 @@ class ManipulationController extends Controller
 {
     public function index()
     {
-        return Manipulation::all();
+        return Manipulation::orderBy('id', 'desc')->get();
     }
 
     public function show($id)

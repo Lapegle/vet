@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\ManipulationController;
-use App\Http\Controllers\MedicamentController;
-use App\Http\Controllers\PetController;
-use App\Http\Controllers\VisitController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PetController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\VisitController;
+use App\Http\Controllers\MedicamentController;
+use App\Http\Controllers\ManipulationController;
+use App\Http\Controllers\UsedMedicamentController;
+use App\Http\Controllers\UsedManipulationController;
 
 
 /*
@@ -55,3 +57,15 @@ Route::get('manipulations/{manipulation}', [ManipulationController::class, 'show
 Route::post('manipulations', [ManipulationController::class, 'store']);
 Route::put('manipulations/{manipulation}', [ManipulationController::class, 'update']);
 Route::delete('manipulations/{manipulation}', [ManipulationController::class, 'delete']);
+
+Route::get('usedmanipulations/{id}', [UsedManipulationController::class, 'index']);
+//Route::get('usedmanipulations/{manipulation}', [UsedManipulationController::class, 'show']);
+Route::post('usedmanipulations', [UsedManipulationController::class, 'store']);
+Route::put('usedmanipulations/{manipulation}', [UsedManipulationController::class, 'update']);
+Route::delete('usedmanipulations/{manipulation}', [UsedManipulationController::class, 'delete']);
+
+Route::get('usedmedicaments/{id}', [UsedMedicamentController::class, 'index']);
+//Route::get('usedmedicaments/{manipulation}', [UsedMedicamentController::class, 'show']);
+Route::post('usedmedicaments', [UsedMedicamentController::class, 'store']);
+Route::put('usedmedicaments/{medicaments}', [UsedMedicamentController::class, 'update']);
+Route::delete('usedmedicaments/{medicaments}', [UsedMedicamentController::class, 'delete']);

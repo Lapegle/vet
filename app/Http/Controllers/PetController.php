@@ -9,7 +9,7 @@ class PetController extends Controller
 {
     public function index()
     {
-        return Pet::all();
+        return Pet::orderBy('id', 'desc')->get();
     }
 
     public function showVisits($id)

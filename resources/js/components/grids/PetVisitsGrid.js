@@ -29,7 +29,9 @@ const PetVisitsGrid = (props) => {
       {headerName: 'Anamnēze', field: 'history', sortable: false},
       {headerName: 'Diagnoze', field: 'diagnosis', sortable: false},
       {headerName: 'Norādes', field: 'instructions', sortable: false},
-      {headerName: 'Cena', field: 'price', width: '115px', resizable: false}
+      {headerName: 'Cena', field: 'price', cellRenderer: (data) => {
+        return data.data.price + ' €';
+      }, width: '115px', resizable: false}
     ])
   
     const defaultColDef = useMemo( () => ({

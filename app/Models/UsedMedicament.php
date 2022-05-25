@@ -15,11 +15,11 @@ class UsedMedicament extends Model
 
     public function medicament()
     {
-        $this->belongsTo(Medicament::class);
+        return $this->belongsTo(Medicament::class);
     }
 
     public function visit()
     {
-        $this->belongsTo(Visit::class);
+        return $this->belongsTo(Visit::class);
     }
 }

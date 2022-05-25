@@ -9,7 +9,7 @@ class VisitController extends Controller
 {
     public function index()
     {
-        return Visit::all();
+        return Visit::orderBy('created_at', 'desc')->get();
     }
 
     public function show($id)

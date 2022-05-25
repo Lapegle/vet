@@ -9,7 +9,7 @@ class MedicamentController extends Controller
 {
     public function index()
     {
-        return Medicament::all();
+        return Medicament::orderBy('id', 'desc')->get();
     }
 
     public function show($id)

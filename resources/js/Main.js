@@ -19,9 +19,18 @@ import EditPet from './routes/pets/EditPet'
 
 import Visits from './routes/visits/Visits'
 import Visit from './routes/visits/Visit'
+import EditVisit from './routes/visits/EditVisit'
 import AddVisit from './routes/visits/AddVisit'
 import PetVisits from './routes/visits/PetVisits'
 import NotFound from './routes/NotFound'
+
+import Medicaments from './routes/medicaments/Medicaments'
+import AddMedicament from './routes/medicaments/AddMedicament'
+import EditMedicament from './routes/medicaments/EditMedicament'
+
+import Manipulations from './routes/manipulations/Manipulations'
+import AddManipulation from './routes/manipulations/AddManipulation'
+import EditManipulation from './routes/manipulations/EditManipulation'
 
 
 
@@ -44,8 +53,17 @@ function Main() {
 
                     <Route path='/visits' element={<Visits />}/>
                     <Route path='/visit/:id' element={<Visit />}/>
+                    <Route path='/visit/edit/:id' element={<EditVisit />}/>
                     <Route path='/visits/create' element={<AddVisit />} />
                     <Route path='/visits/pet/:id' element={<PetVisits />}/>
+
+                    <Route path='/medicaments' element={<Medicaments />}/>
+                    <Route path='/medicaments/create' element={<AddMedicament />}/>
+                    <Route path='/medicaments/edit/:id' element={<EditMedicament />}/>
+
+                    <Route path='/manipulations' element={<Manipulations />} />
+                    <Route path='/manipulations/create' element={<AddManipulation />}/>
+                    <Route path='/manipulations/edit/:id' element={<EditManipulation />}/>
 
                     <Route path='*' element={<NotFound />} />
                 </Routes>

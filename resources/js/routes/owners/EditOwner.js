@@ -74,6 +74,7 @@ const EditOwner = () => {
         </FloatingLabel>
       </Form.Group>
       <Button variant='primary' onClick={submit}>Izmainīt</Button>
+      <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
     </Form>
     </div>
     

@@ -1,4 +1,6 @@
-import { React, useState } from 'react'
+import axios from 'axios'
+import { React, useEffect, useState } from 'react'
+
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom'
 
@@ -6,6 +8,9 @@ const AddVisit = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
+
+    const [medicamentList, setMedicamentList] = useState([])
+    const [manipulationList, setManipulationList] = useState([])
 
     const [temperature, setTemperature] = useState('')
     const [heartRate, setHeartRate] = useState('')
@@ -15,8 +20,10 @@ const AddVisit = () => {
     const [diagnosis, setDiagnosis] = useState('')
     const [instructions, setInstructions] = useState('')
     const [notes, setNotes] = useState('')
-    const [price, setPrice] = useState('')
+    const [price, setPrice] = useState(0.0)
 
+    const [medicaments ,setMedicaments] = useState([])
+    const [manipulations ,setManipulations] = useState([])
 
     const submit = (e) => {
         e.preventDefault()
@@ -31,20 +38,66 @@ const AddVisit = () => {
             instructions: instructions,
             notes: notes,
             price: price
+          }).then((response) => {
+            medicaments.forEach(value => {
+              axios.post('http://localhost:8000/api/usedmedicaments', {
+                visit_id: response.data.id,
+                medicament_id: value
+              })
+            })
+            manipulations.forEach(value => {
+              axios.post('http://localhost:8000/api/usedmanipulations', {
+                visit_id: response.data.id,
+                manipulation_id: value
+              })
+            })
+            navigate('/visit/' + response.data.id)
           })
+
+
         //   .then((response) => {
         //     navigate('/visits/pet/' + response.data.id)
         //   })
-        .then((response) => {
-            navigate(-1)
-        })
+        // .then((response) => {
+        //     navigate(-1)
+        // })
     }
+
+    const addMedicaments = (e) => {
+      setMedicaments(medicaments => [...medicaments, e.target.value])
+      setPrice(price + parseFloat(medicamentList.find(x => x.id == e.target.value).price))
+    }
+
+    const deleteMedicament = (value) => {
+      setMedicaments(medicaments.filter(item => item !== value))
+      setPrice(price - parseFloat(medicamentList.find(x => x.id == value).price))
+    }
+
+    const addManipulations = (e) => {
+      setManipulations(manipulations => [...manipulations, e.target.value])
+      setPrice(price + parseFloat(manipulationList.find(x => x.id == e.target.value).price))
+    }
+
+    const deleteManipulation = (value) => {
+      setManipulations(manipulations.filter(item => item !== value))
+      setPrice(price - parseFloat(manipulationList.find(x => x.id == value).price))
+
+    }
+
+    useEffect(() => {
+      axios.get('http://localhost:8000/api/medicaments').then((response) => {
+        setMedicamentList(response.data)
+      })
+      axios.get('http://localhost:8000/api/manipulations').then((response) => {
+        setManipulationList(response.data)
+      })
+    }, [])
     
 
   return (
     <>
     <h2 className='mb-4 text-center'>Pievienot jaunu apmeklējumu</h2>
-    <div className='d-flex justify-content-center'>
+    <div className='d-flex justify-content-center mb-5'>
     <Form onSubmit={submit} className='w-50'>
       <Form.Group className="mb-3" controlId='temperature'>
         <FloatingLabel
@@ -126,17 +179,75 @@ const AddVisit = () => {
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
+
+
+      {/* //Manipulāciju dropdown menu */}
+
+      <Form.Group className="mb-3" controlId='sex'>
+        <FloatingLabel
+          controlId='manipulations'
+          label='Manipulācijas'
+          onChange={(e) => addManipulations(e)}
+          >
+          <Form.Select placeholder='Sterilization'
+          >
+            <option >Izvēlieties manipulācijas</option>
+          { manipulationList.map((value) => {
+              return <option key={value.id} value={value.id}>{value.name} - {value.price} €</option>
+            }) 
+          }
+          </Form.Select>
+        </FloatingLabel>
+      </Form.Group>
+      <ul>
+      {manipulations.map((value) => {
+        
+        return <li className='mb-2'>{manipulationList.find(x => x.id == value).name} {manipulationList.find(x => x.id == value).price} €
+        <Button onClick={() => deleteManipulation(value)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst manipulāciju'><i className='bi bi-trash'></i></Button></li> 
+
+      })}
+      </ul>
+
+      {/* //Medikamentu dropdown menu */}
+
+      <Form.Group className="mb-3" controlId='sex'>
+        <FloatingLabel
+          controlId='medicaments'
+          label='Medikamenti'
+          onChange={(e) => addMedicaments(e)}
+          >
+          <Form.Select placeholder='Paracetamol'
+          >
+            <option >Izvēlaties medikamentus</option>
+          { medicamentList.map((value) => {
+              return <option key={value.id} value={value.id}>{value.name} - {value.price} €</option>
+            }) 
+          }
+          </Form.Select>
+        </FloatingLabel>
+      </Form.Group>
+
+      <ul>
+      {medicaments.map((value) => {
+        
+        return <li className='mb-2'>{medicamentList.find(x => x.id == value).name} {medicamentList.find(x => x.id == value).price} €
+        <Button onClick={() => deleteMedicament(value)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst medikamentu'><i className='bi bi-trash'></i></Button></li> 
+
+      })}
+      </ul>
+
       <Form.Group className="mb-3" controlId='price'>
         <FloatingLabel
           controlId='price'
           label='Pakalpojumu cena'
           >
-          <Form.Control type='text' placeholder='100'
+          <Form.Control type='text' placeholder='100' value={price.toFixed(2)}
             onChange={(e) => {setPrice(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
       <Button type='submit' variant='primary'>Pievienot</Button>
+      <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
     </Form>
     </div>
 

@@ -27,7 +27,6 @@ const OwnerGrid = () => {
     }))
   
     const cellClickedListener = useCallback( event => {
-      //console.log('cellClicked', event.data.id);
       navigate('/pets/owner/' + event.data.id )
     }, []);
   

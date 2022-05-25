@@ -15,11 +15,11 @@ class UsedManipulation extends Model
 
     public function manipulation()
     {
-        $this->belongsTo(Manipulation::class);
+        return $this->belongsTo(Manipulation::class);
     }
 
     public function visit()
     {
-        $this->belongsTo(Visit::class);
+        return $this->belongsTo(Visit::class);
     }
 }

@@ -30,6 +30,18 @@ const Header = () => {
                     Apmeklējumi
                 </Nav.Link>
             </LinkContainer>
+
+            <LinkContainer to='/medicaments'>
+                <Nav.Link>
+                    Medikamenti
+                </Nav.Link>
+            </LinkContainer>
+
+            <LinkContainer to='/manipulations'>
+                <Nav.Link>
+                    Manipulācijas
+                </Nav.Link>
+            </LinkContainer>
         </Nav>
     </Navbar>
   )
