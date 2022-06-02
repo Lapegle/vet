@@ -9,7 +9,7 @@ class OwnerController extends Controller
 {
     public function index()
     {
-        return Owner::all();
+        return Owner::orderBy('id', 'desc')->get();
     }
 
     public function show($id)

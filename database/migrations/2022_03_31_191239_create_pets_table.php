@@ -14,16 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pets', function (Blueprint $table) {
-            $table->mediumIncrements('id');
+            $table->id();
             $table->timestamps();
             $table->string('name', 30);
-            $table->foreignId('owner_id');
-            $table->date('birth_date');
+            $table->foreignId('owner_id')->constrained()->onDelete('cascade');
+            $table->date('birth_date')->nullable();
             $table->enum('sex',['M', 'F']);
             $table->string('species',45);
             $table->string('breed', 45);
             $table->string('colour', 45);
-            $table->string('microchip', 16);
+            $table->string('microchip', 16)->nullable();
         });
     }
 

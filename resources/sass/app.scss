@@ -6,3 +6,16 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// ActiveReport
+
+@import '@grapecity/activereports/styles/ar-js-ui.css';
+@import '@grapecity/activereports/styles/ar-js-viewer.css';
+
+.zoom {
+    transition: transform .8s;
+  }
+
+.zoom:hover {
+    transform: scale(1.07); 
+  }

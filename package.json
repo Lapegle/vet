@@ -24,12 +24,16 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@grapecity/activereports-react": "^3.1.0",
+        "ag-charts-community": "^5.3.0",
+        "ag-charts-react": "^5.3.0",
         "ag-grid-community": "^27.2.1",
         "ag-grid-react": "^27.2.1",
         "bootstrap-icons": "^1.8.1",
         "moment": "^2.29.3",
         "react-bootstrap": "^2.3.1",
         "react-router-bootstrap": "^0.26.1",
-        "react-router-dom": "^6.3.0"
+        "react-router-dom": "^6.3.0",
+        "react-to-print": "^2.14.7"
     }
 }

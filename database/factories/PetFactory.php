@@ -21,9 +21,9 @@ class PetFactory extends Factory
             'name' => $this->faker->firstName(),
             'birth_date' => $this->faker->dateTimeBetween('-10 years', '-2 years'),
             'sex' => $this->faker->randomElement(['M', 'F']),
-            'species' => $this->faker->randomElement(['Dog', 'Cat']),
-            'breed' => $this->faker->randomElement(['Beagle', 'Pug', 'Golden Retriever', 'Aegean', 'American Curl']),
-            'colour' => $this->faker->colorName(),
+            'species' => $this->faker->randomElement(['Suns', 'Kaķis']),
+            'breed' => $this->faker->randomElement(['Bīgls', 'Mopsis', 'Labradors', 'Nezināma', 'Britu īsspalvainais', 'Meikūns', 'Siāmietis']),
+            'colour' => $this->faker->randomElement(['Melns', 'Balts', 'Brūns', 'Zeltains', 'Melns ar baltiem plankumiem', 'Ruds', 'Balts ar melnām ķepām']),
             'microchip' => $this->faker->numerify('################')
         ];
     }

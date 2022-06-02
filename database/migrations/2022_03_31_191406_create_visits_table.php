@@ -14,17 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('visits', function (Blueprint $table) {
-            $table->mediumIncrements('id');
+            $table->id();
             $table->timestamps();
-            $table->foreignId('pet_id');
-            $table->decimal('temperature', 3, 1);
-            $table->unsignedSmallInteger('heart_rate');
-            $table->unsignedSmallInteger('breath_rate');
-            $table->string('mood', 45);
+            $table->foreignId('pet_id')->constrained()->onDelete('cascade');
+            $table->decimal('temperature', 3, 1)->nullable();
+            $table->unsignedSmallInteger('heart_rate')->nullable();
+            $table->unsignedSmallInteger('breath_rate')->nullable();
+            $table->string('mood', 45)->nullable();
             $table->text('history');
             $table->text('diagnosis');
-            $table->text('instructions');
-            $table->text('notes');
+            $table->text('instructions')->nullable();
+            $table->text('notes')->nullable();
             $table->decimal('price', 6, 2);
         });
     }

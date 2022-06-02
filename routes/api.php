@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
@@ -22,9 +23,9 @@ use App\Http\Controllers\UsedManipulationController;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 Route::get('owners', [OwnerController::class, 'index']);
 Route::get('owners/{owner}', [OwnerController::class, 'show']);
@@ -69,3 +70,8 @@ Route::get('usedmedicaments/{id}', [UsedMedicamentController::class, 'index']);
 Route::post('usedmedicaments', [UsedMedicamentController::class, 'store']);
 Route::put('usedmedicaments/{medicaments}', [UsedMedicamentController::class, 'update']);
 Route::delete('usedmedicaments/{medicaments}', [UsedMedicamentController::class, 'delete']);
+
+Route::get('dailyvisits', [DashboardController::class, 'dailyVisits']);
+Route::get('allpets', [DashboardController::class, 'allpets']);
+Route::get('visitreport', [DashboardController::class, 'visitReport']);
+Route::get('newclients', [DashboardController::class, 'newclients']);

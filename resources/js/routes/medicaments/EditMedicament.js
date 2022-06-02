@@ -31,7 +31,7 @@ const EditMedicament = () => {
 
   return (
     <>
-    <h2 className='mb-4 text-center'>Pievienot jaunu medikamentu</h2>
+    <h2 className='mb-4 text-center'>Rediģēt medikamentu</h2>
     <div className='d-flex justify-content-center'>
       <Form onSubmit={submit} className="w-50">
 

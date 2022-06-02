@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('owners', function (Blueprint $table) {
-            $table->mediumIncrements('id');
+            $table->id();
             $table->timestamps();
             $table->string('name', 45);
             $table->string('address');

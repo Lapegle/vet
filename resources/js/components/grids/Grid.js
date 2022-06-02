@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react'
 
 import { render } from 'react-dom'
 import { AgGridReact } from 'ag-grid-react'
+import { AG_GRID_LOCALE_LV } from './locale.lv.js'
+
 
 import 'ag-grid-community/dist/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'; // Optional theme CSS
@@ -18,7 +20,7 @@ const Grid = (props) => {
   }))
 
     const onFirstDataRendered = useCallback((params) => {
-      gridRef.current.api.sizeColumnsToFit();
+      gridRef.current.api.sizeColumnsToFit()
     }, []);
  
 
@@ -26,10 +28,12 @@ const Grid = (props) => {
        <div>
 
      {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
-     <div className="ag-theme-alpine" style={{width: '100%', height: 600}}>
+     <div className="ag-theme-alpine shadow" style={{width: '100%', height: 600}}>
 
        <AgGridReact 
            ref={gridRef} // Ref for accessing Grid's API
+           
+           localeText={AG_GRID_LOCALE_LV}
 
            rowData={props.rowData} // Row Data for Rows
 
