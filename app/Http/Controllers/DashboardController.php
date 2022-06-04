@@ -44,4 +44,36 @@ class DashboardController extends Controller
             ORDER BY date
             ");
     }
+
+    public function popularmanipulations() {
+        // return DB::select("
+        // (SELECT
+        // count(manipulation_id), manipulations.name
+        // from used_manipulations
+        // INNER JOIN manipulations
+        // ON used_manipulations.manipulation_id = manipulations.id
+        // GROUP BY manipulation_id
+        // LIMIT 18446744073709551610 OFFSET 5)
+        // UNION
+        // (SELECT
+        // count(manipulation_id), manipulations.name
+        // from used_manipulations
+        // INNER JOIN manipulations
+        // ON used_manipulations.manipulation_id = manipulations.id
+        // GROUP BY manipulation_id
+        // LIMIT 5)
+        // ORDER BY 1 DESC
+        // ");
+
+        return DB::select("
+        SELECT
+        count(manipulation_id) AS count, manipulations.name
+        from used_manipulations
+        INNER JOIN manipulations
+        ON used_manipulations.manipulation_id = manipulations.id
+        GROUP BY manipulation_id
+        ORDER BY manipulation_id DESC
+        LIMIT 7
+        ");
+    }
 }

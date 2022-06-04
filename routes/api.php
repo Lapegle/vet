@@ -75,3 +75,4 @@ Route::get('dailyvisits', [DashboardController::class, 'dailyVisits']);
 Route::get('allpets', [DashboardController::class, 'allpets']);
 Route::get('visitreport', [DashboardController::class, 'visitReport']);
 Route::get('newclients', [DashboardController::class, 'newclients']);
+Route::get('popularmanipulations', [DashboardController::class, 'popularmanipulations']);
