@@ -16,7 +16,6 @@ const Manipulations = () => {
         }}
       ])
 
-    const axios = require('axios').default
 
     const cellClickedListener = useCallback( event => {
         navigate('/manipulations/edit/' + event.data.id )

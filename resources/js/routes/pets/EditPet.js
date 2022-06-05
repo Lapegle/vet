@@ -8,9 +8,6 @@ const EditPet = () => {
     const navigate = useNavigate()
     const { id } = useParams();
 
-  
-    const axios = require('axios').default
-  
     const [name, setName] = useState('')
     const [birthDate, setBirthDate] = useState('')
     const [sex, setSex] = useState('M')

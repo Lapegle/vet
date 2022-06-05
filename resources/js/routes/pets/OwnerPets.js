@@ -10,8 +10,6 @@ const OwnerPets = () => {
 
     const { id } = useParams();
 
-    const axios = require('axios').default
-
     const [owner, setOwner] = useState({})
 
     const deleteOwner = () => {

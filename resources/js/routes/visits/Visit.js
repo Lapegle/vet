@@ -13,8 +13,6 @@ const Visit = () => {
   const navigate = useNavigate()
   const componentRef = useRef();
 
-  const axios = require('axios').default
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

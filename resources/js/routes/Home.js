@@ -11,7 +11,6 @@ const Home = () => {
   const [clientData, setClientData] = useState([])
   const [popularManipulations, setPopularManipulations] = useState([])
 
-  const axios = require('axios').default
 
 
   const visitOptions = {

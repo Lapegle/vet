@@ -16,8 +16,6 @@ const PetVisits = () => {
 
   const navigate = useNavigate()
 
-  const axios = require('axios').default
-
   const [pet, setPet] = useState({})
   const [owner, setOwner] = useState({})
   const [rowData, setRowData] = useState()

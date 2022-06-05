@@ -8,8 +8,6 @@ const AddOwner = () => {
 
   const navigate = useNavigate()
 
-  const axios = require('axios').default
-
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')

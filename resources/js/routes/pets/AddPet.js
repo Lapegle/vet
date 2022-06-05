@@ -8,8 +8,6 @@ const AddPet = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const axios = require('axios').default
-
   const [name, setName] = useState('')
   const [birthDate, setBirthDate] = useState('')
   const [sex, setSex] = useState('M')

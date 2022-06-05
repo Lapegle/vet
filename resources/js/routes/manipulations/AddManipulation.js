@@ -4,7 +4,6 @@ import { Form, Button, FloatingLabel } from 'react-bootstrap'
 
 const AddManipulation = () => {
 
-  const axios = require('axios').default
 
   const navigate = useNavigate()
 

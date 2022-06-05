@@ -16,8 +16,6 @@ const Medicaments = () => {
         }}
       ])
 
-    const axios = require('axios').default
-
     const cellClickedListener = useCallback( event => {
         navigate('/medicaments/edit/' + event.data.id )
       }, []);

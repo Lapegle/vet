@@ -4,8 +4,6 @@ import { Form, Button, FloatingLabel } from 'react-bootstrap'
 
 const AddMedicament = () => {
 
-  const axios = require('axios').default
-
   const navigate = useNavigate()
 
   const [name, setName] = useState('')

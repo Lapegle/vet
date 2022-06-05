@@ -9,9 +9,6 @@ const EditOwner = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-
-  const axios = require('axios').default
-
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
