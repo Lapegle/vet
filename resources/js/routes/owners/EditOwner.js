@@ -14,7 +14,7 @@ const EditOwner = () => {
   const [phone, setPhone] = useState('')
 
   const submit = () => {
-    axios.put('http://localhost:8000/api/owners/' + id, {
+    axios.put(window.url + '/owners/' + id, {
       name: name,
       address: address,
       phone: phone
@@ -25,7 +25,7 @@ const EditOwner = () => {
   }
 
   useEffect(() => {
-      axios.get('http://localhost:8000/api/owners/' + id)
+      axios.get(window.url + '/owners/' + id)
       .then((response) => {
           setName(response.data.name)
           setAddress(response.data.address)

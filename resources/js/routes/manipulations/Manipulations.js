@@ -22,7 +22,7 @@ const Manipulations = () => {
       }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/manipulations').then((response) => {
+        axios.get(window.url + '/manipulations').then((response) => {
             setRowData(response.data)
         })
     }, [])

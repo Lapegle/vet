@@ -13,12 +13,12 @@ const OwnerPets = () => {
     const [owner, setOwner] = useState({})
 
     const deleteOwner = () => {
-      axios.delete('http://localhost:8000/api/owners/' + id)
+      axios.delete(window.url + '/owners/' + id)
       .then(navigate('/owners'))
     }
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/owners/' + id ).then((response)=>{
+        axios.get(window.url + '/owners/' + id ).then((response)=>{
             setOwner(response.data)
         })
     

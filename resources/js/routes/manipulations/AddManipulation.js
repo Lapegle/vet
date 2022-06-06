@@ -12,7 +12,7 @@ const AddManipulation = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:8000/api/manipulations', {
+    axios.post(window.url + '/manipulations', {
       name: name,
       price: price,
 

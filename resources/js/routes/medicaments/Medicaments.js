@@ -21,7 +21,7 @@ const Medicaments = () => {
       }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/medicaments').then((response) => {
+        axios.get(window.url + '/medicaments').then((response) => {
             setRowData(response.data)
         })
     }, [])

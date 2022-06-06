@@ -18,7 +18,7 @@ const EditPet = () => {
   
     const submit = (e) => {
       e.preventDefault()
-      axios.put('http://localhost:8000/api/pets/' + id, {
+      axios.put(window.url + '/pets/' + id, {
         name: name,
         birth_date: birthDate,
         sex: sex,
@@ -34,7 +34,7 @@ const EditPet = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/pets/' + id)
+        axios.get(window.url + '/pets/' + id)
         .then((response) => {
             setName(response.data.name)
             setBirthDate(response.data.birth_date)

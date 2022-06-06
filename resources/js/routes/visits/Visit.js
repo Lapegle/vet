@@ -29,23 +29,23 @@ const Visit = () => {
 
 
   const deleteVisit = () => {
-    axios.delete('http://localhost:8000/api/visits/' + id)
+    axios.delete(window.url + '/visits/' + id)
     .then(navigate(-1))
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/visits/' + id ).then((response)=>{
+    axios.get(window.url + '/visits/' + id ).then((response)=>{
         setVisit(response.data)
-        axios.get('http://localhost:8000/api/pets/' + response.data.pet_id).then((response)=> {
+        axios.get(window.url + '/pets/' + response.data.pet_id).then((response)=> {
           setPet(response.data)
-          axios.get('http://localhost:8000/api/owners/' + response.data.owner_id).then((response) => {
+          axios.get(window.url + '/owners/' + response.data.owner_id).then((response) => {
             setOwner(response.data)
           })
       })
-    axios.get('http://localhost:8000/api/usedmanipulations/' + id).then((response) => {
+    axios.get(window.url + '/usedmanipulations/' + id).then((response) => {
       setUsedManipulations(response.data)
     })
-    axios.get('http://localhost:8000/api/usedmedicaments/' + id).then((response) => {
+    axios.get(window.url + '/usedmedicaments/' + id).then((response) => {
       setUsedMedicaments(response.data)
     })
     })

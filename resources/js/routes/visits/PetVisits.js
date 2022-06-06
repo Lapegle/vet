@@ -22,7 +22,7 @@ const PetVisits = () => {
 
 
   const deletePet= () => {
-    axios.delete('http://localhost:8000/api/pets/' + id)
+    axios.delete(window.url + '/pets/' + id)
     .then(navigate(-1))
   }
 
@@ -44,13 +44,13 @@ const PetVisits = () => {
     }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/pets/' + id ).then((response)=>{
+        axios.get(window.url + '/pets/' + id ).then((response)=>{
             setPet(response.data)
-            axios.get('http://localhost:8000/api/owners/' + response.data.owner_id).then((response) => {
+            axios.get(window.url + '/owners/' + response.data.owner_id).then((response) => {
               setOwner(response.data)
             })
         })
-        axios.get('http://localhost:8000/api/pet/' + id).then((response) => {
+        axios.get(window.url + '/pet/' + id).then((response) => {
           setRowData(response.data)
         })
     

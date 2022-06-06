@@ -14,7 +14,7 @@ const AddOwner = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:8000/api/owners', {
+    axios.post(window.url + '/owners', {
       name: name,
       address: address,
       phone: phone

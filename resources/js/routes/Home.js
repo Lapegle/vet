@@ -71,16 +71,17 @@ const Home = () => {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/dailyvisits').then((response) => {
+    axios.get(window.url + '/dailyvisits').then((response) => {
       setVisitData(response.data)
     })
-    axios.get('http://localhost:8000/api/allpets').then((response) => {
+
+    axios.get(window.url + '/allpets').then((response) => {
       setPetData(response.data)
     })
-    axios.get('http://localhost:8000/api/newclients').then((response) => {
+    axios.get(window.url + '/newclients').then((response) => {
       setClientData(response.data)
     })
-    axios.get('http://localhost:8000/api/popularmanipulations').then((response) => {
+    axios.get(window.url + '/popularmanipulations').then((response) => {
       setPopularManipulations(response.data)
     })
   }, [])

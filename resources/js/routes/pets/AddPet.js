@@ -18,7 +18,7 @@ const AddPet = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:8000/api/pets', {
+    axios.post(window.url + '/pets', {
       name: name,
       owner_id: location.state.owner,
       birth_date: birthDate,
