@@ -30,8 +30,9 @@ const AddManipulation = () => {
               <FloatingLabel
                 controlId='name'
                 label='Manipulācijas nosaukums'
-                >
-                <Form.Control type='text' placeholder='Sterilizācija'
+          className='text-white'
+          >
+                <Form.Control type='text' placeholder='Sterilizācija' className='form-outline bg-dark text-white'
                   onChange={(e) => {setName(e.target.value)}}
                 ></Form.Control>
               </FloatingLabel>
@@ -41,13 +42,14 @@ const AddManipulation = () => {
             <FloatingLabel
               controlId='price'
               label='Manipulācijas cena'
-              >
-              <Form.Control type='text' placeholder='100'
+          className='text-white'
+          >
+              <Form.Control type='text' placeholder='100' className='form-outline bg-dark text-white'
                 onChange={(e) => {setPrice(e.target.value)}}
               ></Form.Control>
             </FloatingLabel>
           </Form.Group>
-          <Button type='submit' variant='primary'>Pievienot</Button>
+          <Button type='submit' variant='outline-primary'>Pievienot</Button>
           <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
 
         </Form>

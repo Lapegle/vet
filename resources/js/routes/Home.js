@@ -111,7 +111,7 @@ const Home = () => {
               <h3 className='mb-3 text-center'>Populārākie pakalpojumi</h3>
               <ol>
                 { popularManipulations.map((value) => {
-                  return <li className='mt-2'> {value.name} - {value.count}</li>
+                  return <li key={value.name} className='mt-2'> {value.name} - {value.count}</li>
                 }) }
               </ol>
             </Card.Body>

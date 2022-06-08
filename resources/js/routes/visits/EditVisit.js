@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { React, useEffect, useState } from 'react'
 
-import { Button, FloatingLabel, Form } from 'react-bootstrap'
+import { Button, Col, FloatingLabel, Form, Row } from 'react-bootstrap'
 import { useNavigate, useLocation, useParams } from 'react-router-dom'
 
 const EditVisit = () => {
@@ -73,14 +73,11 @@ const EditVisit = () => {
       setManipulationList(response.data)
     })
     axios.get('/api/usedmedicaments/' + id).then((response) => {
-      console.log(response.data)
       setMedicaments(response.data)
     })
-    // axios.get('/api/usedmanipulations/' + id).then((response) => {
-    //   console.log(response.data)
-
-    //   setManipulations(response.data)
-    // })
+    axios.get('/api/usedmanipulations/' + id).then((response) => {
+      setManipulations(response.data)
+    })
     axios.get('/api/visits/' + id)
     .then((response) => {
         setTemperature(response.data.temperature)
@@ -99,42 +96,55 @@ const EditVisit = () => {
 
   return (
     <>
-    <h2 className='mb-4 text-center'>Rediģēt apmeklējumu</h2>
+    <h2 className='mb-4 text-center text-white'>Rediģēt apmeklējumu</h2>
     <div className='d-flex justify-content-center mb-5'>
-    <Form onSubmit={submit} className='w-50'>
-      <Form.Group className="mb-3" controlId='temperature'>
-        <FloatingLabel
-          controlId='temperature'
-          label='Temperatūra'
-          className='text-white'
-          >
-          <Form.Control type='text' placeholder='37' defaultValue={temperature} className='form-outline bg-dark text-white'
-            onChange={(e) => {setTemperature(e.target.value)}}
-          ></Form.Control>
-        </FloatingLabel>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId='heartRate'>
-        <FloatingLabel
-          controlId='heartRate'
-          label='Sirds ritms'
-          className='text-white'
-          >
-          <Form.Control type='text' placeholder='100' defaultValue={heartRate} className='form-outline bg-dark text-white'
-            onChange={(e) => {setHeartRate(e.target.value)}}
-          ></Form.Control>
-        </FloatingLabel>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId='breathRate'>
-        <FloatingLabel
-          controlId='breathRate'
-          label='Elpošanas ritms'
-          className='text-white'
-          >
-          <Form.Control type='text' placeholder='20' defaultValue={breathRate} className='form-outline bg-dark text-white'
-            onChange={(e) => {setBreathRate(e.target.value)}}
-          ></Form.Control>
-        </FloatingLabel>
-      </Form.Group>
+    <Form onSubmit={submit} className='w-75'>
+      <Row>
+        <Col>
+          <Row>
+            <Col>
+              <Form.Group className="mb-3" controlId='temperature'>
+                <FloatingLabel
+                  controlId='temperature'
+                  label='Temperatūra'
+                  className='text-white'
+                  >
+                  <Form.Control type='text' placeholder='37' defaultValue={temperature} className='form-outline bg-dark text-white'
+                    onChange={(e) => {setTemperature(e.target.value)}}
+                  ></Form.Control>
+                </FloatingLabel>
+              </Form.Group>
+            </Col>
+
+            <Col>
+              <Form.Group className="mb-3" controlId='heartRate'>
+                <FloatingLabel
+                  controlId='heartRate'
+                  label='Sirds ritms'
+                  className='text-white'
+                  >
+                  <Form.Control type='text' placeholder='100' defaultValue={heartRate} className='form-outline bg-dark text-white'
+                    onChange={(e) => {setHeartRate(e.target.value)}}
+                  ></Form.Control>
+                </FloatingLabel>
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3" controlId='breathRate'>
+                <FloatingLabel
+                  controlId='breathRate'
+                  label='Elpošanas ritms'
+                  className='text-white'
+                  >
+                  <Form.Control type='text' placeholder='20' defaultValue={breathRate} className='form-outline bg-dark text-white'
+                    onChange={(e) => {setBreathRate(e.target.value)}}
+                  ></Form.Control>
+                </FloatingLabel>
+              </Form.Group>
+            </Col>
+          </Row>
+          
+
       <Form.Group className="mb-3" controlId='mood'>
         <FloatingLabel
           controlId='mood'
@@ -190,8 +200,8 @@ const EditVisit = () => {
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
-
-
+      </Col>
+      <Col>
       {/* //Manipulāciju dropdown menu */}
 
       <Form.Group className="mb-3" controlId='sex'>
@@ -212,13 +222,16 @@ const EditVisit = () => {
           </Form.Select>
         </FloatingLabel>
       </Form.Group>
-
+      <ul>
       {manipulations.map((value) => {
-        
-        return <p>{value} 
-        <Button onClick={() => deleteManipulation(value)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst manipulāciju'><i className='bi bi-trash'></i></Button></p> 
+              
+              return <li className='mb-2 text-white'>{value.manipulation.name} 
+              <Button onClick={() => deleteManipulation(value.id)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst manipulāciju'><i className='bi bi-trash'></i></Button></li> 
 
-      })}
+            })}
+
+      </ul>
+
 
 
       {/* //Medikamentu dropdown menu */}
@@ -242,12 +255,12 @@ const EditVisit = () => {
         </FloatingLabel>
       </Form.Group>
 
+      <ul>
       {medicaments.map((value) => {
-        
-        return <p>{value.medicament.name} 
-        <Button onClick={() => deleteMedicament(value.id)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst medikamentu'><i className='bi bi-trash'></i></Button></p> 
-
+        return <li className='mb-2 text-white'>{value.medicament.name} 
+        <Button onClick={() => deleteMedicament(value.id)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst medikamentu'><i className='bi bi-trash'></i></Button></li> 
       })}
+      </ul>
 
       <Form.Group className="mb-3" controlId='price'>
         <FloatingLabel
@@ -260,8 +273,9 @@ const EditVisit = () => {
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
-      <Button type='submit' variant='primary'>Pievienot</Button>
-      <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
+      <Button type='submit' variant='outline-primary' className='float-end'>Izmainīt</Button>
+      <Button className='ms-2 float-end' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button></Col>
+      </Row>
     </Form>
     </div>
 

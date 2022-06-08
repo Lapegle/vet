@@ -56,7 +56,7 @@ const EditMedicament = () => {
             ></Form.Control>
           </FloatingLabel>
         </Form.Group>
-        <Button type='submit' variant='primary'>Izmainīt</Button>
+        <Button type='submit' variant='outline-primary'>Izmainīt</Button>
         <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
 
       </Form>

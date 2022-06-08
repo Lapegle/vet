@@ -55,7 +55,7 @@ const Visits = () => {
     <div>
       <div className='mb-2'>
         <h2 className='d-inline text-white'>Apmeklējumi</h2>
-        <Button variant="primary" className='d-inline float-end' onClick={handleShow}>
+        <Button variant="outline-primary" className='d-inline float-end' onClick={handleShow}>
           Sagatavot atskaiti &nbsp;<i className="bi bi-printer"></i>
         </Button>
       </div>
@@ -65,10 +65,10 @@ const Visits = () => {
 
 
       <Modal fullscreen={true} show={show} onHide={handleClose}>
-        <Modal.Body>
+        <Modal.Body  className='bg-dark'>
           <Viewer report= {{ Uri: 'income_report.rdlx-json' }} />
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className='bg-dark'>
           <Button variant="secondary" onClick={handleClose}>
             Aizvērt
           </Button>
