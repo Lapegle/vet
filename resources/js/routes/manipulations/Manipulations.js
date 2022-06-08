@@ -22,7 +22,7 @@ const Manipulations = () => {
       }, []);
 
     useEffect(() => {
-        axios.get(window.url + '/manipulations').then((response) => {
+        axios.get('/api/manipulations').then((response) => {
             setRowData(response.data)
         })
     }, [])
@@ -31,7 +31,7 @@ const Manipulations = () => {
     <>
         <Row>
             <Col>
-                <h2>Manipulācijas</h2>
+                <h2 className='text-white'>Manipulācijas</h2>
             </Col>
             <Col>
                 <Button variant='outline-primary' className='float-end ms-3' title='Pievienot jaunu manipulāciju' onClick={() => navigate('/manipulations/create')}><i className="bi bi-plus-lg"></i></Button>

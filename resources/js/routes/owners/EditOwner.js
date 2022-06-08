@@ -14,7 +14,7 @@ const EditOwner = () => {
   const [phone, setPhone] = useState('')
 
   const submit = () => {
-    axios.put(window.url + '/owners/' + id, {
+    axios.put('/api/owners/' + id, {
       name: name,
       address: address,
       phone: phone
@@ -25,7 +25,7 @@ const EditOwner = () => {
   }
 
   useEffect(() => {
-      axios.get(window.url + '/owners/' + id)
+      axios.get('/api/owners/' + id)
       .then((response) => {
           setName(response.data.name)
           setAddress(response.data.address)
@@ -34,15 +34,16 @@ const EditOwner = () => {
   }, [])
   return (
     <>
-    <h2 className='mb-4 text-center'>Rediģēt klienta datus</h2>
+    <h2 className='mb-4 text-center text-white'>Rediģēt klienta datus</h2>
     <div className='d-flex justify-content-center'>
     <Form action='' className='w-50'>
       <Form.Group className="mb-3" controlId='name'>
         <FloatingLabel
           controlId='name'
           label='Vārds'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Jānis Bērziņš'
+          <Form.Control type='text' placeholder='Jānis Bērziņš' className='form-outline bg-dark text-white'
             defaultValue={name}
             onChange={(e) => {setName(e.target.value)}}
           ></Form.Control>
@@ -52,8 +53,9 @@ const EditOwner = () => {
         <FloatingLabel
           controlId='address'
           label='Adrese'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Varoņu iela 11A, Rēzekne'
+          <Form.Control type='text' placeholder='Varoņu iela 11A, Rēzekne' className='form-outline bg-dark text-white'
             defaultValue={address}
             onChange={(e) => {setAddress(e.target.value)}}
           ></Form.Control>
@@ -63,8 +65,9 @@ const EditOwner = () => {
         <FloatingLabel
           controlId='phone'
           label='Telefona numurs'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='20000000'
+          <Form.Control type='text' placeholder='20000000' className='form-outline bg-dark text-white'
             defaultValue={phone}
             onChange={(e) => {setPhone(e.target.value)}}
           ></Form.Control>

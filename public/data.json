@@ -1,0 +1,38 @@
+[
+    {
+        "id": 10,
+        "created_at": "2022-05-27T08:00:44.000000Z",
+        "updated_at": "2022-05-27T08:00:44.000000Z",
+        "pet_id": 5,
+        "temperature": "32.0",
+        "heart_rate": 103,
+        "breath_rate": 50,
+        "mood": "Apmulsis",
+        "history": "Ut explicabo voluptatem est expedita eum perferendis omnis.",
+        "diagnosis": "Illum magnam ipsa officiis in voluptatem optio qui.",
+        "instructions": "Itaque mollitia maxime itaque enim.",
+        "notes": "Iusto aut et est tempore quia.",
+        "price": "201.09",
+        "pet": {
+            "id": 5,
+            "created_at": "2022-05-27T08:00:44.000000Z",
+            "updated_at": "2022-05-27T08:00:44.000000Z",
+            "name": "Charlotte",
+            "owner_id": 3,
+            "birth_date": "2020-04-07",
+            "sex": "M",
+            "species": "Suns",
+            "breed": "Labradors",
+            "colour": "Brūns",
+            "microchip": "3448861293367478",
+            "owner": {
+                "id": 3,
+                "created_at": "2022-05-27T08:00:43.000000Z",
+                "updated_at": "2022-05-27T08:00:43.000000Z",
+                "name": "Tomasa Parisian",
+                "address": "802 Gilda Cove Suite 310\nPort Marta, CA 64779",
+                "phone": "+1 (847) 799-8737"
+            }
+        }
+    }
+]

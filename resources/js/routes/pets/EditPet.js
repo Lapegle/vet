@@ -18,7 +18,7 @@ const EditPet = () => {
   
     const submit = (e) => {
       e.preventDefault()
-      axios.put(window.url + '/pets/' + id, {
+      axios.put('/api/pets/' + id, {
         name: name,
         birth_date: birthDate,
         sex: sex,
@@ -34,7 +34,7 @@ const EditPet = () => {
 
 
     useEffect(() => {
-        axios.get(window.url + '/pets/' + id)
+        axios.get('/api/pets/' + id)
         .then((response) => {
             setName(response.data.name)
             setBirthDate(response.data.birth_date)
@@ -57,8 +57,9 @@ const EditPet = () => {
         <FloatingLabel
           controlId='name'
           label='Dzīvnieka vārds'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Jānis Bērziņš' defaultValue={name}
+          <Form.Control type='text' placeholder='Jānis Bērziņš' defaultValue={name} className='form-outline bg-dark text-white'
             onChange={(e) => {setName(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -67,8 +68,9 @@ const EditPet = () => {
         <FloatingLabel
           controlId='birthDate'
           label='Dzimšanas datums'
+          className='text-white'
           >
-          <Form.Control type='date' placeholder='09/03/2003' defaultValue={birthDate}
+          <Form.Control type='date' placeholder='09/03/2003' defaultValue={birthDate} className='form-outline bg-dark text-white'
             onChange={(e) => {setBirthDate(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -77,8 +79,9 @@ const EditPet = () => {
         <FloatingLabel
           controlId='sex'
           label='Dzimums'
+          className='text-white'
           >
-          <Form.Select placeholder='M/F' value={sex}
+          <Form.Select placeholder='M/F' value={sex} className='form-outline bg-dark text-white'
             onChange={(e) => {setSex(e.target.value)}}
           >
               <option value={'M'}>M</option>
@@ -90,8 +93,9 @@ const EditPet = () => {
         <FloatingLabel
           controlId='species'
           label='Dzīvnieka suga'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Suns' defaultValue={species}
+          <Form.Control type='text' placeholder='Suns' defaultValue={species} className='form-outline bg-dark text-white'
             onChange={(e) => {setSpecies(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -100,8 +104,9 @@ const EditPet = () => {
         <FloatingLabel
           controlId='breed'
           label='Dzīvnieka šķirne'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Labradors' defaultValue={breed}
+          <Form.Control type='text' placeholder='Labradors' defaultValue={breed} className='form-outline bg-dark text-white'
             onChange={(e) => {setBreed(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -110,8 +115,9 @@ const EditPet = () => {
         <FloatingLabel
           controlId='colour'
           label='Dzīvnieka krāsa'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Zeltaina' defaultValue={colour}
+          <Form.Control type='text' placeholder='Zeltaina' defaultValue={colour} className='form-outline bg-dark text-white'
             onChange={(e) => {setColour(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -120,8 +126,9 @@ const EditPet = () => {
         <FloatingLabel
           controlId='microchip'
           label='Dzīvnieka čipa numurs'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='1234567812345678' defaultValue={microchip }
+          <Form.Control type='text' placeholder='1234567812345678' defaultValue={microchip} className='form-outline bg-dark text-white'
             onChange={(e) => {setMicrochip(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>

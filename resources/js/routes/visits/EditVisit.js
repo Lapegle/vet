@@ -28,7 +28,7 @@ const EditVisit = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    axios.put('http://localhost:8000/api/visits/' + id, {
+    axios.put('/api/visits/' + id, {
         temperature: temperature,
         heart_rate: heartRate,
         breath_rate: breathRate,
@@ -41,13 +41,13 @@ const EditVisit = () => {
       })
       // .then((response) => {
       //   medicaments.forEach(value => {
-      //     axios.post('http://localhost:8000/api/usedmedicaments', {
+      //     axios.post('/api/usedmedicaments', {
       //       visit_id: response.data.id,
       //       medicament_id: value
       //     })
       //   })
       //   manipulations.forEach(value => {
-      //     axios.post('http://localhost:8000/api/usedmanipulations', {
+      //     axios.post('/api/usedmanipulations', {
       //       visit_id: response.data.id,
       //       manipulation_id: value
       //     })
@@ -66,22 +66,22 @@ const EditVisit = () => {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/medicaments').then((response) => {
+    axios.get('/api/medicaments').then((response) => {
       setMedicamentList(response.data)
     })
-    axios.get('http://localhost:8000/api/manipulations').then((response) => {
+    axios.get('/api/manipulations').then((response) => {
       setManipulationList(response.data)
     })
-    axios.get('http://localhost:8000/api/usedmedicaments/' + id).then((response) => {
+    axios.get('/api/usedmedicaments/' + id).then((response) => {
       console.log(response.data)
       setMedicaments(response.data)
     })
-    // axios.get('http://localhost:8000/api/usedmanipulations/' + id).then((response) => {
+    // axios.get('/api/usedmanipulations/' + id).then((response) => {
     //   console.log(response.data)
 
     //   setManipulations(response.data)
     // })
-    axios.get('http://localhost:8000/api/visits/' + id)
+    axios.get('/api/visits/' + id)
     .then((response) => {
         setTemperature(response.data.temperature)
         setHeartRate(response.data.heart_rate)
@@ -106,8 +106,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='temperature'
           label='Temperatūra'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='37' defaultValue={temperature}
+          <Form.Control type='text' placeholder='37' defaultValue={temperature} className='form-outline bg-dark text-white'
             onChange={(e) => {setTemperature(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -116,8 +117,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='heartRate'
           label='Sirds ritms'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='100' defaultValue={heartRate}
+          <Form.Control type='text' placeholder='100' defaultValue={heartRate} className='form-outline bg-dark text-white'
             onChange={(e) => {setHeartRate(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -126,8 +128,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='breathRate'
           label='Elpošanas ritms'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='20' defaultValue={breathRate}
+          <Form.Control type='text' placeholder='20' defaultValue={breathRate} className='form-outline bg-dark text-white'
             onChange={(e) => {setBreathRate(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -136,8 +139,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='mood'
           label='Noskaņojums'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Labs' defaultValue={mood}
+          <Form.Control type='text' placeholder='Labs' defaultValue={mood} className='form-outline bg-dark text-white'
             onChange={(e) => {setMood(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -146,8 +150,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='history'
           label='Anamnēze'
+          className='text-white'
           >
-          <Form.Control as='textarea' type='text' placeholder='Sāpes' defaultValue={history}
+          <Form.Control as='textarea' type='text' placeholder='Sāpes' defaultValue={history} className='form-outline bg-dark text-white'
             onChange={(e) => {setHistory(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -156,8 +161,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='diagnosis'
           label='Diagnoze'
+          className='text-white'
           >
-          <Form.Control as='textarea' type='text' placeholder='Nāve' defaultValue={diagnosis}
+          <Form.Control as='textarea' type='text' placeholder='Nāve' defaultValue={diagnosis} className='form-outline bg-dark text-white'
             onChange={(e) => {setDiagnosis(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -166,8 +172,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='instructions'
           label='Instrukcijas saimniekam'
+          className='text-white'
           >
-          <Form.Control as='textarea' type='text' placeholder='Šprice vienreiz dienā' defaultValue={instructions}
+          <Form.Control as='textarea' type='text' placeholder='Šprice vienreiz dienā' defaultValue={instructions} className='form-outline bg-dark text-white'
             onChange={(e) => {setInstructions(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -176,8 +183,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='notes'
           label='Piezīmes'
+          className='text-white'
           >
-          <Form.Control as='textarea' type='text' placeholder='Piezīmes' defaultValue={notes}
+          <Form.Control as='textarea' type='text' placeholder='Piezīmes' defaultValue={notes} className='form-outline bg-dark text-white'
             onChange={(e) => {setNotes(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -192,8 +200,9 @@ const EditVisit = () => {
           label='Manipulācijas'
           onChange={(e) => {setManipulations(manipulations => [...manipulations, e.target.value])
           }}
+          className='text-white'
           >
-          <Form.Select placeholder='Sterilization'
+          <Form.Select placeholder='Sterilization' className='form-outline bg-dark text-white'
           >
             <option >Izvēlieties manipulācijas</option>
           { manipulationList.map((value) => {
@@ -220,8 +229,9 @@ const EditVisit = () => {
           label='Medikamenti'
           onChange={(e) => {setMedicaments(medicaments => [...medicaments, e.target.value])
           }}
+          className='text-white'
           >
-          <Form.Select placeholder='Paracetamol'
+          <Form.Select placeholder='Paracetamol' className='form-outline bg-dark text-white'
           >
             <option >Izvēlaties medikamentus</option>
           { medicamentList.map((value) => {
@@ -243,8 +253,9 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='price'
           label='Pakalpojumu cena'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='100' defaultValue={price}
+          <Form.Control type='text' placeholder='100' defaultValue={price} className='form-outline bg-dark text-white'
             onChange={(e) => {setPrice(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>

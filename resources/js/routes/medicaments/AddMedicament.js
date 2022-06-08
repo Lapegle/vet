@@ -11,7 +11,7 @@ const AddMedicament = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    axios.post(window.url + '/medicaments', {
+    axios.post('/api/medicaments', {
       name: name,
       price: price,
 

@@ -29,23 +29,23 @@ const Visit = () => {
 
 
   const deleteVisit = () => {
-    axios.delete(window.url + '/visits/' + id)
+    axios.delete('/api/visits/' + id)
     .then(navigate(-1))
   }
 
   useEffect(() => {
-    axios.get(window.url + '/visits/' + id ).then((response)=>{
+    axios.get('/api/visits/' + id ).then((response)=>{
         setVisit(response.data)
-        axios.get(window.url + '/pets/' + response.data.pet_id).then((response)=> {
+        axios.get('/api/pets/' + response.data.pet_id).then((response)=> {
           setPet(response.data)
-          axios.get(window.url + '/owners/' + response.data.owner_id).then((response) => {
+          axios.get('/api/owners/' + response.data.owner_id).then((response) => {
             setOwner(response.data)
           })
       })
-    axios.get(window.url + '/usedmanipulations/' + id).then((response) => {
+    axios.get('/api/usedmanipulations/' + id).then((response) => {
       setUsedManipulations(response.data)
     })
-    axios.get(window.url + '/usedmedicaments/' + id).then((response) => {
+    axios.get('/api/usedmedicaments/' + id).then((response) => {
       setUsedMedicaments(response.data)
     })
     })
@@ -55,7 +55,7 @@ const Visit = () => {
 
   return (
     <>
-    <Row>
+    <Row className='text-white'>
       <Col>
         <h3 className='mb-3'><strong>{pet.name}</strong> apmeklējums { moment.utc(visit.created_at).format('YYYY-MM-DD HH:mm') }</h3>
         <p className='fs-5'><b>Temperatūra:</b> {visit.temperature}</p>

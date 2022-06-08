@@ -14,7 +14,7 @@ const AddOwner = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    axios.post(window.url + '/owners', {
+    axios.post('/api/owners', {
       name: name,
       address: address,
       phone: phone
@@ -29,15 +29,16 @@ const AddOwner = () => {
 
   return (
     <>
-    <h2 className='mb-4 text-center'>Pievienot jaunu klientu</h2>
+    <h2 className='mb-4 text-center text-white'>Pievienot jaunu klientu</h2>
     <div className='d-flex justify-content-center'>
     <Form onSubmit={submit} className="w-50">
       <Form.Group className="mb-3" controlId='name'>
         <FloatingLabel
           controlId='name'
           label='Vārds un uzvārds'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Jānis Bērziņš'
+          <Form.Control type='text' placeholder='Jānis Bērziņš' className='form-outline bg-dark text-white'
             onChange={(e) => {setName(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -46,8 +47,9 @@ const AddOwner = () => {
         <FloatingLabel
           controlId='address'
           label='Adrese'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Varoņu iela 11A, Rēzekne'
+          <Form.Control type='text' placeholder='Varoņu iela 11A, Rēzekne' className='form-outline bg-dark text-white'
             onChange={(e) => {setAddress(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -56,8 +58,9 @@ const AddOwner = () => {
         <FloatingLabel
           controlId='phone'
           label='Telefona numurs'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='20000000'
+          <Form.Control type='text' placeholder='20000000' className='form-outline bg-dark text-white'
             onChange={(e) => {setPhone(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>

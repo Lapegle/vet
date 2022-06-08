@@ -22,7 +22,7 @@ const PetVisits = () => {
 
 
   const deletePet= () => {
-    axios.delete(window.url + '/pets/' + id)
+    axios.delete('/api/pets/' + id)
     .then(navigate(-1))
   }
 
@@ -44,13 +44,13 @@ const PetVisits = () => {
     }, []);
 
     useEffect(() => {
-        axios.get(window.url + '/pets/' + id ).then((response)=>{
+        axios.get('/api/pets/' + id ).then((response)=>{
             setPet(response.data)
-            axios.get(window.url + '/owners/' + response.data.owner_id).then((response) => {
+            axios.get('/api/owners/' + response.data.owner_id).then((response) => {
               setOwner(response.data)
             })
         })
-        axios.get(window.url + '/pet/' + id).then((response) => {
+        axios.get('/api/pet/' + id).then((response) => {
           setRowData(response.data)
         })
     
@@ -69,7 +69,7 @@ const PetVisits = () => {
       </Row>
       <Row>
         <Col md={3}>
-          <Card className='shadow' style={{height: '600px'}}>
+          <Card className='shadow bg-dark text-white border border-secondary' style={{height: '600px'}}>
             <Card.Body>
               <Card.Title><p className='fs-3'><strong>{pet.name}</strong>
                 <Button variant='outline-primary' className='float-end ms-2' title='Rediģēt dzīvnieka datus' onClick={() => navigate('/pets/edit/' + id)}><i className="bi bi-pencil"></i></Button>

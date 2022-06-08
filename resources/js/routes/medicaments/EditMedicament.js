@@ -13,7 +13,7 @@ const EditMedicament = () => {
 
     const submit = (e) => {
         e.preventDefault()
-        axios.put('http://localhost:8000/api/medicaments/' + id, {
+        axios.put('/api/medicaments/' + id, {
           name: name,
           price: price,
     
@@ -22,7 +22,7 @@ const EditMedicament = () => {
       }
 
       useEffect(() => {
-        axios.get('http://localhost:8000/api/medicaments/' + id)
+        axios.get('/api/medicaments/' + id)
         .then((response) => {
             setName(response.data.name)
             setPrice(response.data.price)

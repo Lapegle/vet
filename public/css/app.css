@@ -11289,9 +11289,9 @@ textarea.form-control-lg {
   }
 }
 .zoom {
-  transition: transform 0.8s;
+  transition: transform 0.75s;
 }
 
 .zoom:hover {
-  transform: scale(1.07);
+  transform: scale(1.09);
 }

@@ -29,11 +29,11 @@ const Home = () => {
         showInLegend: false,
       }
     ],
-    theme: 'ag-vivid'
+    theme: 'ag-vivid-dark'
   }
 
   const petOptions = {
-    theme: 'ag-vivid',
+    theme: 'ag-vivid-dark',
     title: {
       text: 'Kopējais dzīvnieku skaits',
     },
@@ -67,21 +67,21 @@ const Home = () => {
         showInLegend: false,
       }
     ],
-    theme: 'ag-vivid'
+    theme: 'ag-vivid-dark'
   }
 
   useEffect(() => {
-    axios.get(window.url + '/dailyvisits').then((response) => {
+    axios.get('/api/dailyvisits').then((response) => {
       setVisitData(response.data)
     })
 
-    axios.get(window.url + '/allpets').then((response) => {
+    axios.get('/api/allpets').then((response) => {
       setPetData(response.data)
     })
-    axios.get(window.url + '/newclients').then((response) => {
+    axios.get('/api/newclients').then((response) => {
       setClientData(response.data)
     })
-    axios.get(window.url + '/popularmanipulations').then((response) => {
+    axios.get('/api/popularmanipulations').then((response) => {
       setPopularManipulations(response.data)
     })
   }, [])
@@ -90,14 +90,14 @@ const Home = () => {
     <>
       <Row className='mt-5'>
         <Col lg={7}>
-          <Card style={{ width: '100%'}} className='shadow'>
+          <Card style={{ width: '100%'}} className='shadow bg-dark border border-secondary'>
             <Card.Body>
               <AgChartsReact options={visitOptions} />
             </Card.Body>
           </Card>
         </Col>
         <Col lg={5}>
-          <Card style={{ width: '100%'}} className='shadow'>
+          <Card style={{ width: '100%'}} className='shadow bg-dark border border-secondary'>
             <Card.Body>
               <AgChartsReact options={petOptions} />
             </Card.Body>
@@ -106,8 +106,8 @@ const Home = () => {
       </Row>
       <Row className='mt-4'>
         <Col lg={5}>
-          <Card style={{ width: '100%', height: '100%'}} className='shadow'>
-            <Card.Body>
+          <Card style={{ width: '100%', height: '100%'}} className='shadow bg-dark border border-secondary'>
+            <Card.Body className='text-white'>
               <h3 className='mb-3 text-center'>Populārākie pakalpojumi</h3>
               <ol>
                 { popularManipulations.map((value) => {
@@ -118,7 +118,7 @@ const Home = () => {
           </Card>
         </Col>
         <Col lg={7}>
-          <Card style={{ width: '100%'}} className='shadow'>
+          <Card style={{ width: '100%'}} className='shadow bg-dark border border-secondary'>
             <Card.Body>
               <AgChartsReact options={clientOptions} />
             </Card.Body>

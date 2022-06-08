@@ -13,9 +13,9 @@
 @import '@grapecity/activereports/styles/ar-js-viewer.css';
 
 .zoom {
-    transition: transform .8s;
+    transition: transform .75s;
   }
 
 .zoom:hover {
-    transform: scale(1.07); 
+    transform: scale(1.09); 
   }

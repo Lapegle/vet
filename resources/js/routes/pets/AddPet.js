@@ -18,7 +18,7 @@ const AddPet = () => {
 
   const submit = (e) => {
     e.preventDefault()
-    axios.post(window.url + '/pets', {
+    axios.post('/api/pets', {
       name: name,
       owner_id: location.state.owner,
       birth_date: birthDate,
@@ -38,15 +38,16 @@ const AddPet = () => {
 
   return (
     <>
-    <h2 className='mb-4 text-center'>Pievienot jaunu dzīvnieku</h2>
+    <h2 className='mb-4 text-center text-white'>Pievienot jaunu dzīvnieku</h2>
     <div className='d-flex justify-content-center'>
     <Form onSubmit={submit} className='w-50'>
       <Form.Group className="mb-3" controlId='name'>
         <FloatingLabel
           controlId='name'
           label='Dzīvnieka vārds'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Jānis Bērziņš'
+          <Form.Control type='text' placeholder='Jānis Bērziņš' className='form-outline bg-dark text-white'
             onChange={(e) => {setName(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -55,8 +56,9 @@ const AddPet = () => {
         <FloatingLabel
           controlId='birthDate'
           label='Dzimšanas datums'
+          className='text-white'
           >
-          <Form.Control type='date' placeholder='09/03/2003'
+          <Form.Control type='date' placeholder='09/03/2003' className='form-outline bg-dark text-white'
             onChange={(e) => {setBirthDate(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -65,8 +67,9 @@ const AddPet = () => {
         <FloatingLabel
           controlId='sex'
           label='Dzimums'
+          className='text-white'
           >
-          <Form.Select placeholder='M/F'
+          <Form.Select placeholder='M/F' className='form-outline bg-dark text-white'
             onChange={(e) => {setSex(e.target.value)}}
           >
               <option value={'M'}>M</option>
@@ -78,8 +81,9 @@ const AddPet = () => {
         <FloatingLabel
           controlId='species'
           label='Dzīvnieka suga'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Suns'
+          <Form.Control type='text' placeholder='Suns' className='form-outline bg-dark text-white'
             onChange={(e) => {setSpecies(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -88,8 +92,9 @@ const AddPet = () => {
         <FloatingLabel
           controlId='breed'
           label='Dzīvnieka šķirne'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Labradors'
+          <Form.Control type='text' placeholder='Labradors' className='form-outline bg-dark text-white'
             onChange={(e) => {setBreed(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -98,8 +103,9 @@ const AddPet = () => {
         <FloatingLabel
           controlId='colour'
           label='Dzīvnieka krāsa'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='Zeltaina'
+          <Form.Control type='text' placeholder='Zeltaina' className='form-outline bg-dark text-white'
             onChange={(e) => {setColour(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -108,8 +114,9 @@ const AddPet = () => {
         <FloatingLabel
           controlId='microchip'
           label='Dzīvnieka čipa numurs'
+          className='text-white'
           >
-          <Form.Control type='text' placeholder='1234567812345678'
+          <Form.Control type='text' placeholder='1234567812345678' className='form-outline bg-dark text-white'
             onChange={(e) => {setMicrochip(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>

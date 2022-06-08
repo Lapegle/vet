@@ -13,7 +13,7 @@ const EditManipulation = () => {
 
     const submit = (e) => {
         e.preventDefault()
-        axios.put(window.url + '/manipulations/' + id, {
+        axios.put('/api/manipulations/' + id, {
           name: name,
           price: price,
     
@@ -22,7 +22,7 @@ const EditManipulation = () => {
       }
 
       useEffect(() => {
-        axios.get(window.url + '/manipulations/' + id)
+        axios.get('/api/manipulations/' + id)
         .then((response) => {
             setName(response.data.name)
             setPrice(response.data.price)

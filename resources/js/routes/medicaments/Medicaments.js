@@ -21,7 +21,7 @@ const Medicaments = () => {
       }, []);
 
     useEffect(() => {
-        axios.get(window.url + '/medicaments').then((response) => {
+        axios.get('/api/medicaments').then((response) => {
             setRowData(response.data)
         })
     }, [])
@@ -30,7 +30,7 @@ const Medicaments = () => {
     <>
         <Row>
             <Col>
-                <h2>Medikamenti</h2>
+                <h2 className='text-white'>Medikamenti</h2>
             </Col>
             <Col>
                 <Button variant='outline-primary' className='float-end ms-3' title='Pievienot jaunu medikamentu' onClick={() => navigate('/medicaments/create')}><i className="bi bi-plus-lg"></i></Button>

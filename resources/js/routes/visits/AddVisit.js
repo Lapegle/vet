@@ -27,7 +27,7 @@ const AddVisit = () => {
 
     const submit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8000/api/visits', {
+        axios.post('api/visits', {
             pet_id: location.state.pet,
             temperature: temperature,
             heart_rate: heartRate,
@@ -40,13 +40,13 @@ const AddVisit = () => {
             price: price
           }).then((response) => {
             medicaments.forEach(value => {
-              axios.post('http://localhost:8000/api/usedmedicaments', {
+              axios.post('/api/usedmedicaments', {
                 visit_id: response.data.id,
                 medicament_id: value
               })
             })
             manipulations.forEach(value => {
-              axios.post('http://localhost:8000/api/usedmanipulations', {
+              axios.post('/api/usedmanipulations', {
                 visit_id: response.data.id,
                 manipulation_id: value
               })
@@ -85,10 +85,10 @@ const AddVisit = () => {
     }
 
     useEffect(() => {
-      axios.get('http://localhost:8000/api/medicaments').then((response) => {
+      axios.get('/api/medicaments').then((response) => {
         setMedicamentList(response.data)
       })
-      axios.get('http://localhost:8000/api/manipulations').then((response) => {
+      axios.get('/api/manipulations').then((response) => {
         setManipulationList(response.data)
       })
     }, [])
@@ -96,7 +96,7 @@ const AddVisit = () => {
 
   return (
     <>
-    <h2 className='mb-4 text-center'>Pievienot jaunu apmeklējumu</h2>
+    <h2 className='mb-4 text-center text-white'>Pievienot jaunu apmeklējumu</h2>
     <div className='d-flex justify-content-center mb-5'>
     <Form onSubmit={submit} className='w-75'>
       <Row>
@@ -107,8 +107,9 @@ const AddVisit = () => {
                 <FloatingLabel
                   controlId='temperature'
                   label='Temperatūra'
-                  >
-                  <Form.Control type='text' placeholder='37'
+          className='text-white'
+          >
+                  <Form.Control type='text' placeholder='37' className='form-outline bg-dark text-white'
                     onChange={(e) => {setTemperature(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -119,8 +120,9 @@ const AddVisit = () => {
                 <FloatingLabel
                   controlId='heartRate'
                   label='Sirds ritms'
-                  >
-                  <Form.Control type='text' placeholder='100'
+          className='text-white'
+          >
+                  <Form.Control type='text' placeholder='100' className='form-outline bg-dark text-white'
                     onChange={(e) => {setHeartRate(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -131,8 +133,9 @@ const AddVisit = () => {
                 <FloatingLabel
                   controlId='breathRate'
                   label='Elpošanas ritms'
-                  >
-                  <Form.Control type='text' placeholder='20'
+          className='text-white'
+          >
+                  <Form.Control type='text' placeholder='20' className='form-outline bg-dark text-white'
                     onChange={(e) => {setBreathRate(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -144,8 +147,9 @@ const AddVisit = () => {
                 <FloatingLabel
                   controlId='mood'
                   label='Noskaņojums'
-                  >
-                  <Form.Control type='text' placeholder='Labs'
+          className='text-white'
+          >
+                  <Form.Control type='text' placeholder='Labs' className='form-outline bg-dark text-white'
                     onChange={(e) => {setMood(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -154,8 +158,9 @@ const AddVisit = () => {
                 <FloatingLabel
                   controlId='history'
                   label='Anamnēze'
-                  >
-                  <Form.Control as='textarea' type='text' placeholder='Sāpes'
+          className='text-white'
+          >
+                  <Form.Control as='textarea' type='text' placeholder='Sāpes' className='form-outline bg-dark text-white'
                     onChange={(e) => {setHistory(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -164,8 +169,9 @@ const AddVisit = () => {
                 <FloatingLabel
                   controlId='diagnosis'
                   label='Diagnoze'
-                  >
-                  <Form.Control as='textarea' type='text' placeholder='Nāve'
+          className='text-white'
+          >
+                  <Form.Control as='textarea' type='text' placeholder='Nāve' className='form-outline bg-dark text-white'
                     onChange={(e) => {setDiagnosis(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -174,8 +180,9 @@ const AddVisit = () => {
                 <FloatingLabel
                   controlId='instructions'
                   label='Instrukcijas saimniekam'
-                  >
-                  <Form.Control as='textarea' type='text' placeholder='Šprice vienreiz dienā'
+          className='text-white'
+          >
+                  <Form.Control as='textarea' type='text' placeholder='Šprice vienreiz dienā' className='form-outline bg-dark text-white'
                     onChange={(e) => {setInstructions(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -184,8 +191,9 @@ const AddVisit = () => {
                 <FloatingLabel
                   controlId='notes'
                   label='Piezīmes'
-                  >
-                  <Form.Control as='textarea' type='text' placeholder='Piezīmes'
+          className='text-white'
+          >
+                  <Form.Control as='textarea' type='text' placeholder='Piezīmes' className='form-outline bg-dark text-white'
                     onChange={(e) => {setNotes(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -198,8 +206,9 @@ const AddVisit = () => {
               controlId='manipulations'
               label='Manipulācijas'
               onChange={(e) => addManipulations(e)}
-              >
-              <Form.Select placeholder='Sterilization'
+          className='text-white'
+          >
+              <Form.Select placeholder='Sterilization' className='form-outline bg-dark text-white'
               >
                 <option >Izvēlieties manipulācijas</option>
               { manipulationList.map((value) => {
@@ -212,7 +221,7 @@ const AddVisit = () => {
           <ul>
           {manipulations.map((value) => {
             
-            return <li className='mb-2'>{manipulationList.find(x => x.id == value).name} {manipulationList.find(x => x.id == value).price} €
+            return <li className='mb-2 text-white'>{manipulationList.find(x => x.id == value).name} {manipulationList.find(x => x.id == value).price} €
             <Button onClick={() => deleteManipulation(value)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst manipulāciju'><i className='bi bi-trash'></i></Button></li> 
 
           })}
@@ -225,8 +234,9 @@ const AddVisit = () => {
               controlId='medicaments'
               label='Medikamenti'
               onChange={(e) => addMedicaments(e)}
-              >
-              <Form.Select placeholder='Paracetamol'
+          className='text-white'
+          >
+              <Form.Select placeholder='Paracetamol' className='form-outline bg-dark text-white'
               >
                 <option >Izvēlaties medikamentus</option>
               { medicamentList.map((value) => {
@@ -240,7 +250,7 @@ const AddVisit = () => {
           <ul>
           {medicaments.map((value) => {
             
-            return <li className='mb-2'>{medicamentList.find(x => x.id == value).name} {medicamentList.find(x => x.id == value).price} €
+            return <li className='mb-2 text-white'>{medicamentList.find(x => x.id == value).name} {medicamentList.find(x => x.id == value).price} €
             <Button onClick={() => deleteMedicament(value)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst medikamentu'><i className='bi bi-trash'></i></Button></li> 
 
           })}
@@ -250,8 +260,9 @@ const AddVisit = () => {
             <FloatingLabel
               controlId='price'
               label='Pakalpojumu cena (€)'
-              >
-              <Form.Control type='text' placeholder='100' value={price.toFixed(2)}
+          className='text-white'
+          >
+              <Form.Control type='text' placeholder='100' value={price.toFixed(2)} className='form-outline bg-dark text-white'
                 onChange={(e) => {setPrice(e.target.value)}}
               ></Form.Control>
             </FloatingLabel>
