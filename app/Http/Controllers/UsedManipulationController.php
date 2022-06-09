@@ -29,9 +29,8 @@ class UsedManipulationController extends Controller
         return response()->json($manipulation, 200);
     }
 
-    public function delete(UsedManipulation $manipulation)
+    public function delete($visit_id)
     {
-        $manipulation->delete();
-        return response()->json(null, 204);
+        return UsedManipulation::where('visit_id', $visit_id)->delete();
     }
 }

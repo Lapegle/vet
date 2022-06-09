@@ -21,7 +21,7 @@ const EditVisit = () => {
   const [diagnosis, setDiagnosis] = useState('')
   const [instructions, setInstructions] = useState('')
   const [notes, setNotes] = useState('')
-  const [price, setPrice] = useState('')
+  const [price, setPrice] = useState(0.0)
 
   const [medicaments ,setMedicaments] = useState([])
   const [manipulations ,setManipulations] = useState([])
@@ -39,6 +39,21 @@ const EditVisit = () => {
         notes: notes,
         price: price
       })
+
+      axios.delete('/api/usedmanipulations/' + id)
+      axios.delete('/api/usedmedicaments/' + id)
+      manipulations.forEach(value => {
+        axios.post('/api/usedmanipulations', {
+          visit_id: id,
+          manipulation_id: value
+        })
+      })  
+      medicaments.forEach(value => {
+        axios.post('/api/usedmedicaments', {
+          visit_id: id,
+          medicament_id: value
+        })
+      })
       // .then((response) => {
       //   medicaments.forEach(value => {
       //     axios.post('/api/usedmedicaments', {
@@ -54,15 +69,29 @@ const EditVisit = () => {
       //   })
       //   navigate('/visit/' + response.data.id)
       // })
-
+      navigate(-1)
   }  
 
+  const addMedicaments = (e) => {
+    setMedicaments(medicaments => [...medicaments, e.target.value])
+    setPrice(price + parseFloat(medicamentList.find(x => x.id == e.target.value).price))
+  }
+
   const deleteMedicament = (value) => {
-    setMedicaments(medicaments.filter(item => item.id !== value))
+    medicaments.splice(medicaments.findIndex(item => item === value), 1)
+    setMedicaments(medicaments)
+    setPrice(price - parseFloat(medicamentList.find(x => x.id == value).price))
+  }
+
+  const addManipulations = (e) => {
+    setManipulations(manipulations => [...manipulations, e.target.value])
+    setPrice(price + parseFloat(manipulationList.find(x => x.id == e.target.value).price))
   }
 
   const deleteManipulation = (value) => {
-    setManipulations(manipulations.filter(item => item !== value))
+    manipulations.splice(manipulations.findIndex(item => item === value), 1)
+    setManipulations(manipulations)
+    setPrice(price - parseFloat(manipulationList.find(x => x.id == value).price))
   }
 
   useEffect(() => {
@@ -73,10 +102,10 @@ const EditVisit = () => {
       setManipulationList(response.data)
     })
     axios.get('/api/usedmedicaments/' + id).then((response) => {
-      setMedicaments(response.data)
+      setMedicaments(response.data.map(value => value.medicament_id))
     })
     axios.get('/api/usedmanipulations/' + id).then((response) => {
-      setManipulations(response.data)
+      setManipulations(response.data.map(value => value.manipulation_id))
     })
     axios.get('/api/visits/' + id)
     .then((response) => {
@@ -88,7 +117,7 @@ const EditVisit = () => {
         setDiagnosis(response.data.diagnosis)
         setInstructions(response.data.instructions)
         setNotes(response.data.notes)
-        setPrice(response.data.price)
+        setPrice(parseFloat(response.data.price))
     })
   }, [])
 
@@ -208,13 +237,12 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='manipulations'
           label='Manipulācijas'
-          onChange={(e) => {setManipulations(manipulations => [...manipulations, e.target.value])
-          }}
+          onChange={(e) => addManipulations(e)}
           className='text-white'
           >
-          <Form.Select placeholder='Sterilization' className='form-outline bg-dark text-white'
+          <Form.Select placeholder='Sterilization' className='form-outline bg-dark text-white' value='default'
           >
-            <option >Izvēlieties manipulācijas</option>
+            <option value='default' disabled>Izvēlieties manipulācijas</option>
           { manipulationList.map((value) => {
               return <option key={value.id} value={value.id}>{value.name} - {value.price}</option>
             }) 
@@ -224,11 +252,11 @@ const EditVisit = () => {
       </Form.Group>
       <ul>
       {manipulations.map((value) => {
-              
-              return <li className='mb-2 text-white'>{value.manipulation.name} 
-              <Button onClick={() => deleteManipulation(value.id)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst manipulāciju'><i className='bi bi-trash'></i></Button></li> 
+            
+            return <li className='mb-2 text-white'>{manipulationList.find(x => x.id == value).name} {manipulationList.find(x => x.id == value).price} €
+            <Button onClick={() => deleteManipulation(value)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst manipulāciju'><i className='bi bi-trash'></i></Button></li> 
 
-            })}
+          })}
 
       </ul>
 
@@ -240,13 +268,12 @@ const EditVisit = () => {
         <FloatingLabel
           controlId='medicaments'
           label='Medikamenti'
-          onChange={(e) => {setMedicaments(medicaments => [...medicaments, e.target.value])
-          }}
+          onChange={(e) => addMedicaments(e)}
           className='text-white'
           >
-          <Form.Select placeholder='Paracetamol' className='form-outline bg-dark text-white'
+          <Form.Select placeholder='Paracetamol' className='form-outline bg-dark text-white' value='default'
           >
-            <option >Izvēlaties medikamentus</option>
+            <option value='default' disabled>Izvēlaties medikamentus</option>
           { medicamentList.map((value) => {
               return <option key={value.id} value={value.id}>{value.name} - {value.price}</option>
             }) 
@@ -257,9 +284,11 @@ const EditVisit = () => {
 
       <ul>
       {medicaments.map((value) => {
-        return <li className='mb-2 text-white'>{value.medicament.name} 
-        <Button onClick={() => deleteMedicament(value.id)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst medikamentu'><i className='bi bi-trash'></i></Button></li> 
-      })}
+            
+            return <li className='mb-2 text-white'>{medicamentList.find(x => x.id == value).name} {medicamentList.find(x => x.id == value).price} €
+            <Button onClick={() => deleteMedicament(value)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst medikamentu'><i className='bi bi-trash'></i></Button></li> 
+
+          })}
       </ul>
 
       <Form.Group className="mb-3" controlId='price'>
@@ -268,12 +297,12 @@ const EditVisit = () => {
           label='Pakalpojumu cena'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='100' defaultValue={price} className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='100' value={price.toFixed(2)} className='form-outline bg-dark text-white'
             onChange={(e) => {setPrice(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
-      <Button type='submit' variant='outline-primary' className='float-end'>Izmainīt</Button>
+      <Button type='submit' variant='outline-primary' className='float-end ms-2'>Izmainīt</Button>
       <Button className='ms-2 float-end' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button></Col>
       </Row>
     </Form>

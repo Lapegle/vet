@@ -68,13 +68,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     //Route::get('usedmanipulations/{manipulation}', [UsedManipulationController::class, 'show']);
     Route::post('usedmanipulations', [UsedManipulationController::class, 'store']);
     Route::put('usedmanipulations/{manipulation}', [UsedManipulationController::class, 'update']);
-    Route::delete('usedmanipulations/{manipulation}', [UsedManipulationController::class, 'delete']);
+    Route::delete('usedmanipulations/{visit_id}', [UsedManipulationController::class, 'delete']);
     
     Route::get('usedmedicaments/{id}', [UsedMedicamentController::class, 'index']);
     //Route::get('usedmedicaments/{manipulation}', [UsedMedicamentController::class, 'show']);
     Route::post('usedmedicaments', [UsedMedicamentController::class, 'store']);
     Route::put('usedmedicaments/{medicaments}', [UsedMedicamentController::class, 'update']);
-    Route::delete('usedmedicaments/{medicaments}', [UsedMedicamentController::class, 'delete']);
+    Route::delete('usedmedicaments/{visit_id}', [UsedMedicamentController::class, 'delete']);
     
     Route::get('dailyvisits', [DashboardController::class, 'dailyVisits']);
     Route::get('allpets', [DashboardController::class, 'allpets']);

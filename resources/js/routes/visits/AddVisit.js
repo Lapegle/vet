@@ -69,7 +69,8 @@ const AddVisit = () => {
     }
 
     const deleteMedicament = (value) => {
-      setMedicaments(medicaments.filter(item => item !== value))
+      medicaments.splice(medicaments.findIndex(item => item === value), 1)
+      setMedicaments(medicaments)
       setPrice(price - parseFloat(medicamentList.find(x => x.id == value).price))
     }
 
@@ -79,9 +80,9 @@ const AddVisit = () => {
     }
 
     const deleteManipulation = (value) => {
-      setManipulations(manipulations.filter(item => item !== value))
+      manipulations.splice(manipulations.findIndex(item => item === value), 1)
+      setManipulations(manipulations)
       setPrice(price - parseFloat(manipulationList.find(x => x.id == value).price))
-
     }
 
     useEffect(() => {
@@ -208,9 +209,9 @@ const AddVisit = () => {
               onChange={(e) => addManipulations(e)}
           className='text-white'
           >
-              <Form.Select placeholder='Sterilization' className='form-outline bg-dark text-white'
+              <Form.Select placeholder='Sterilization' className='form-outline bg-dark text-white' value='default'
               >
-                <option >Izvēlieties manipulācijas</option>
+                <option value='default' disabled>Izvēlieties manipulācijas</option>
               { manipulationList.map((value) => {
                   return <option key={value.id} value={value.id}>{value.name} - {value.price} €</option>
                 }) 
@@ -236,9 +237,9 @@ const AddVisit = () => {
               onChange={(e) => addMedicaments(e)}
           className='text-white'
           >
-              <Form.Select placeholder='Paracetamol' className='form-outline bg-dark text-white'
+              <Form.Select placeholder='Paracetamol' className='form-outline bg-dark text-white' value='default'
               >
-                <option >Izvēlaties medikamentus</option>
+                <option value='default' disabled>Izvēlaties medikamentus</option>
               { medicamentList.map((value) => {
                   return <option key={value.id} value={value.id}>{value.name} - {value.price} €</option>
                 }) 

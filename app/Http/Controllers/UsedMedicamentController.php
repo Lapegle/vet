@@ -29,9 +29,9 @@ class UsedMedicamentController extends Controller
         return response()->json($medicament, 200);
     }
 
-    public function delete(UsedMedicament $medicament)
+    public function delete($visit_id)
     {
-        $medicament->delete();
-        return response()->json(null, 204);
+        return UsedMedicament::where('visit_id', $visit_id)->delete();
+        
     }
 }

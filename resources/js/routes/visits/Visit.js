@@ -64,26 +64,28 @@ const Visit = () => {
         <p className='fs-5'><b>Anamnēze:</b> {visit.history}</p>
         <p className='fs-5'><b>Diagnoze:</b> {visit.diagnosis}</p>
         <p className='fs-5'><b>Norādes:</b> {visit.instructions}</p>
-
-
-        <p className='fs-5'><b>Kopēja cena:</b> {visit.price} €</p>
       </Col>
       <Col className='text-right'>
           <Button className='float-end ms-2' onClick={handleShow} variant='outline-secondary'>Izveidot ķirurģisko pieprasījumu &nbsp;<i className='bi bi-printer'></i></Button>
           <Button variant='outline-primary' className='float-end ms-2' title='Rediģēt klienta datus' onClick={() => navigate('/visit/edit/' + id)}><i className="bi bi-pencil"></i></Button>
           <Button variant='outline-danger' className='float-end ms-2' title='Dzēst apmeklējumu' onClick={deleteVisit} ><i className='bi bi-trash'></i></Button>
-          <p className='fs-5 mt-5'><b>Izmantotie medikamenti:</b></p>
-        <ul>
-        { usedMedicaments.map(( value ) => {
-          return <li>{value.medicament.name} - {value.medicament.price} €</li>
-        })}
-        </ul>
-        <p className='fs-5'><b>Veiktās manipulācijas:</b></p>
+          
+          
+        <p className='fs-5 mt-5'><b>Veiktās manipulācijas:</b></p>
         <ul>
         { usedManipulations.map(( value ) => {
           return <li>{value.manipulation.name} - {value.manipulation.price} €</li>
         })}
         </ul>
+
+        <p className='fs-5'><b>Izmantotie medikamenti:</b></p>
+        <ul>
+        { usedMedicaments.map(( value ) => {
+          return <li>{value.medicament.name} - {value.medicament.price} €</li>
+        })}
+        </ul>
+        <p className='fs-5'><b>Kopēja cena:</b> {visit.price} €</p>
+
       </Col>
     </Row>
 
@@ -92,8 +94,8 @@ const Visit = () => {
           onHide={handleClose}
           size='xl'
           >
-            <Modal.Header closeButton>
-              <Modal.Title>Printēt ķirurģisko pieprasījumu</Modal.Title>
+            <Modal.Header className='bg-dark' closeButton>
+              <Modal.Title className='text-white'>Printēt ķirurģisko pieprasījumu</Modal.Title>
             </Modal.Header>
             <Modal.Body ref={componentRef}>
               <div className='border p-5'>
@@ -125,13 +127,13 @@ const Visit = () => {
                 <p className='text-end'>Paraksts: _________________________</p>
               </div>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+            <Modal.Footer className='bg-dark'>
+              <Button variant="outline-secondary" onClick={handleClose}>
                 Aizvērt
               </Button>
 
               <ReactToPrint
-                trigger={() => <Button variant="primary" onClick={handleClose}>Printēt &nbsp;<i className='bi bi-printer'></i></Button>}
+                trigger={() => <Button variant="outline-primary" onClick={handleClose}>Printēt &nbsp;<i className='bi bi-printer'></i></Button>}
                 content={() => componentRef.current}
               />
             </Modal.Footer>
