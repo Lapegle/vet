@@ -21,7 +21,7 @@ const AddMedicament = () => {
 
   return (
     <>
-      <h2 className='mb-4 text-center'>Pievienot jaunu medikamentu</h2>
+      <h2 className='mb-4 text-center text-white'>Pievienot jaunu medikamentu</h2>
       <div className='d-flex justify-content-center'>
         <Form onSubmit={submit} className="w-50">
 
@@ -29,8 +29,9 @@ const AddMedicament = () => {
               <FloatingLabel
                 controlId='name'
                 label='Medikamenta nosaukums'
-                >
-                <Form.Control type='text' placeholder='Paracetamol'
+          className='text-white'
+          >
+                <Form.Control type='text' placeholder='Paracetamol' className='form-outline bg-dark text-white'
                   onChange={(e) => {setName(e.target.value)}}
                 ></Form.Control>
               </FloatingLabel>
@@ -40,8 +41,9 @@ const AddMedicament = () => {
             <FloatingLabel
               controlId='price'
               label='Medikamenta cena'
-              >
-              <Form.Control type='text' placeholder='100'
+          className='text-white'
+          >
+              <Form.Control type='text' placeholder='100' className='form-outline bg-dark text-white'
                 onChange={(e) => {setPrice(e.target.value)}}
               ></Form.Control>
             </FloatingLabel>

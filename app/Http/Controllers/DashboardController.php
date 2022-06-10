@@ -72,7 +72,7 @@ class DashboardController extends Controller
         INNER JOIN manipulations
         ON used_manipulations.manipulation_id = manipulations.id
         GROUP BY manipulation_id
-        ORDER BY manipulation_id DESC
+        ORDER BY count DESC
         LIMIT 7
         ");
     }

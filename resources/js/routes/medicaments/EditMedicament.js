@@ -31,7 +31,7 @@ const EditMedicament = () => {
 
   return (
     <>
-    <h2 className='mb-4 text-center'>Rediģēt medikamentu</h2>
+    <h2 className='mb-4 text-center text-white'>Rediģēt medikamentu</h2>
     <div className='d-flex justify-content-center'>
       <Form onSubmit={submit} className="w-50">
 
@@ -39,8 +39,9 @@ const EditMedicament = () => {
             <FloatingLabel
               controlId='name'
               label='Medikamenta nosaukums'
-              >
-              <Form.Control type='text' placeholder='Paracetamol' value={name}
+          className='text-white'
+          >
+              <Form.Control type='text' placeholder='Paracetamol' value={name} className='form-outline bg-dark text-white'
                 onChange={(e) => {setName(e.target.value)}}
               ></Form.Control>
             </FloatingLabel>
@@ -50,8 +51,9 @@ const EditMedicament = () => {
           <FloatingLabel
             controlId='price'
             label='Medikamenta cena'
-            >
-            <Form.Control type='text' placeholder='100' value={price}
+          className='text-white'
+          >
+            <Form.Control type='text' placeholder='100' value={price} className='form-outline bg-dark text-white'
               onChange={(e) => {setPrice(e.target.value)}}
             ></Form.Control>
           </FloatingLabel>
