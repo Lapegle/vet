@@ -12,7 +12,7 @@ try {
  */
 
 window.axios = require('axios');
-window.axios.defaults.baseURL = window.location.host
+window.axios.defaults.baseURL = 'https://danielsvet.herokuapp.com/'
 
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
