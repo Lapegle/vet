@@ -32,6 +32,6 @@ background-color: #151515;
         </div>
     </body>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="/js/app.js" defer></script>
 </html>
 
