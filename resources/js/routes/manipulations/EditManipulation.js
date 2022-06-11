@@ -11,6 +11,11 @@ const EditManipulation = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
 
+    const deleteManipulation = () => {
+      axios.delete('/api/manipulations/' + id)
+      .then(navigate('/manipulations'))
+    }
+
     const submit = (e) => {
         e.preventDefault()
         axios.put('/api/manipulations/' + id, {
@@ -31,7 +36,7 @@ const EditManipulation = () => {
 
   return (
     <>
-    <h2 className='mb-4 text-center'>Rediģēt manipulāciju</h2>
+    <h2 className='mb-4 text-center text-white'>Rediģēt manipulāciju</h2>
     <div className='d-flex justify-content-center'>
       <Form onSubmit={submit} className="w-50">
 
@@ -58,8 +63,9 @@ const EditManipulation = () => {
             ></Form.Control>
           </FloatingLabel>
         </Form.Group>
-        <Button type='submit' variant='outline-primary'>Izmainīt</Button>
-        <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
+        <Button type='submit' variant='outline-primary' className='float-end ms-2'>Izmainīt</Button>
+        <Button variant='outline-danger' className='float-end ms-2'  onClick={deleteManipulation}>Izdzēst</Button>
+        <Button className='ms-2 float-end' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
 
       </Form>
     </div>

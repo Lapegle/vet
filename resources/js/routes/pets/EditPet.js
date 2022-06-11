@@ -50,7 +50,7 @@ const EditPet = () => {
 
   return (
     <>
-    <h2 className='mb-4 text-center'>Rediģēt dzīvnieka datus</h2>
+    <h2 className='mb-4 text-center text-white'>Rediģēt dzīvnieka datus</h2>
     <div className='d-flex justify-content-center'>
     <Form onSubmit={submit} className='w-50'>
       <Form.Group className="mb-3" controlId='name'>
@@ -133,8 +133,8 @@ const EditPet = () => {
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
-      <Button type='submit' variant='primary'>Izmainīt</Button>
-      <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
+      <Button type='submit' variant='primary'className='float-end ms-2'>Izmainīt</Button>
+      <Button className='float-end ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
     </Form>
     </div>
     

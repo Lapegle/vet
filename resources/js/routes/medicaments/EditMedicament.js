@@ -11,6 +11,11 @@ const EditMedicament = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
 
+    const deleteMedicament = () => {
+      axios.delete('/api/medicaments/' + id)
+      .then(navigate('/medicaments'))
+    }
+
     const submit = (e) => {
         e.preventDefault()
         axios.put('/api/medicaments/' + id, {
@@ -58,8 +63,9 @@ const EditMedicament = () => {
             ></Form.Control>
           </FloatingLabel>
         </Form.Group>
-        <Button type='submit' variant='outline-primary'>Izmainīt</Button>
-        <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
+        <Button type='submit' variant='outline-primary' className='float-end ms-2'>Izmainīt</Button>
+        <Button variant='outline-danger' className='float-end ms-2'  onClick={deleteMedicament}>Izdzēst</Button>
+        <Button className='ms-2 float-end' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
 
       </Form>
     </div>

@@ -121,8 +121,8 @@ const AddPet = () => {
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
-      <Button type='submit' variant='primary'>Pievienot</Button>
-      <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
+      <Button type='submit' variant='primary'className='float-end ms-2'>Pievienot</Button>
+      <Button className='float-end ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
     </Form>
     </div>
     

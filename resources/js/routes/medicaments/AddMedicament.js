@@ -48,8 +48,8 @@ const AddMedicament = () => {
               ></Form.Control>
             </FloatingLabel>
           </Form.Group>
-          <Button type='submit' variant='outline-primary'>Pievienot</Button>
-          <Button className='ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
+          <Button type='submit' variant='outline-primary' className='float-end ms-2'>Pievienot</Button>
+          <Button className='ms-2 float-end' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
 
         </Form>
       </div>
