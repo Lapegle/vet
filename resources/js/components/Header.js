@@ -1,7 +1,10 @@
 import React from 'react'
 
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+
+import { toast } from 'react-toastify'
+
 
 const Header = ({setUser}) => {
 
@@ -9,10 +12,11 @@ const Header = ({setUser}) => {
         axios.post('/logout').then((response) => {
             setUser(null)
         })
+        toast.info('Jūs esat izlogojies', {theme: "colored"})
     }
 
   return (
-    <Navbar className='navbar bg-dark rounded ps-2 mt-3 mb-3 border border-secondary' expand='md'>
+    <Navbar variant='dark' className='navbar bg-dark rounded ps-2 mt-3 mb-3 border border-secondary' expand='md'>
         <LinkContainer to='/'>
             <Navbar.Brand className='ms-2 zoom'>
                 <img className='zoom' src='/assets/logo.svg' alt='logo' />
@@ -53,9 +57,13 @@ const Header = ({setUser}) => {
 
             </Nav>
             <Nav>
-                <Nav.Link className='me-3 text-white' onClick={handleLogout}>
-                        Izlogoties
-                </Nav.Link>
+                <NavDropdown className='text-white me-2' menuVariant='dark' title="Profils">
+                    <NavDropdown.Item onClick={handleLogout}>Izlogoties</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <LinkContainer to='/changepassword'>
+                        <NavDropdown.Item>Mainīt paroli</NavDropdown.Item>
+                    </LinkContainer>
+                </NavDropdown>
             </Nav>
         </Navbar.Collapse>
     </Navbar>

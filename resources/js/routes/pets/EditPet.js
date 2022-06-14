@@ -3,6 +3,8 @@ import { React, useState, useEffect } from 'react'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { toast } from 'react-toastify'
+
 const EditPet = () => {
 
     const navigate = useNavigate()
@@ -29,6 +31,9 @@ const EditPet = () => {
       })
       .then((response) => {
         navigate('/visits/pet/' + response.data.id)
+        toast.success('Dzīvnieka dati rediģēti veiksmīgi', {theme: "colored"})
+      }).catch(() => {
+        toast.error('Radās kļūda mēģinot rediģēt dzīvnieku', {theme: "colored"})
       })
     }
 
@@ -59,7 +64,7 @@ const EditPet = () => {
           label='Dzīvnieka vārds'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Jānis Bērziņš' defaultValue={name} className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='Jānis Bērziņš' defaultValue={name} className='form-outline bg-dark text-white' required
             onChange={(e) => {setName(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -81,7 +86,7 @@ const EditPet = () => {
           label='Dzimums'
           className='text-white'
           >
-          <Form.Select placeholder='M/F' value={sex} className='form-outline bg-dark text-white'
+          <Form.Select placeholder='M/F' value={sex} className='form-outline bg-dark text-white' required
             onChange={(e) => {setSex(e.target.value)}}
           >
               <option value={'M'}>M</option>
@@ -95,7 +100,7 @@ const EditPet = () => {
           label='Dzīvnieka suga'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Suns' defaultValue={species} className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='Suns' defaultValue={species} className='form-outline bg-dark text-white' required
             onChange={(e) => {setSpecies(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -106,7 +111,7 @@ const EditPet = () => {
           label='Dzīvnieka šķirne'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Labradors' defaultValue={breed} className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='Labradors' defaultValue={breed} className='form-outline bg-dark text-white' required
             onChange={(e) => {setBreed(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -117,7 +122,7 @@ const EditPet = () => {
           label='Dzīvnieka krāsa'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Zeltaina' defaultValue={colour} className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='Zeltaina' defaultValue={colour} className='form-outline bg-dark text-white' required
             onChange={(e) => {setColour(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef} from 'react'
 import moment from 'moment'
 
 import ReactToPrint from 'react-to-print';
+import { toast } from 'react-toastify'
 
 import { useNavigate, useParams } from 'react-router-dom'
 import { Row, Col, Button, Modal } from 'react-bootstrap';
@@ -27,10 +28,21 @@ const Visit = () => {
   var today = new Date()
   var now = today.getDate()+'.'+(today.getMonth()+1)+'.'+today.getFullYear()
 
+  const [times, setTimes] = useState(false)
+
+  const onClick = () => {
+    if(!times){
+      toast.info('Uzspiediet divas reizes, lai izdzēstu', {theme: "colored"})
+      setTimes(true)
+    }    
+  }
 
   const deleteVisit = () => {
     axios.delete('/api/visits/' + id)
-    .then(navigate(-1))
+    .then(() => {
+      navigate(-1)
+      toast.warning('Apmeklējums izdzēsts', {theme: "colored"})
+    })
   }
 
   useEffect(() => {
@@ -68,7 +80,7 @@ const Visit = () => {
       <Col className='text-right'>
           <Button className='float-end ms-2' onClick={handleShow} variant='outline-secondary'>Izveidot ķirurģisko pieprasījumu &nbsp;<i className='bi bi-printer'></i></Button>
           <Button variant='outline-primary' className='float-end ms-2' title='Rediģēt klienta datus' onClick={() => navigate('/visit/edit/' + id)}><i className="bi bi-pencil"></i></Button>
-          <Button variant='outline-danger' className='float-end ms-2' title='Dzēst apmeklējumu' onClick={deleteVisit} ><i className='bi bi-trash'></i></Button>
+          <Button variant='outline-danger' className='float-end ms-2' title='Dzēst apmeklējumu' onClick={onClick} onDoubleClick={deleteVisit} ><i className='bi bi-trash'></i></Button>
           
           
         <p className='fs-5 mt-5'><b>Veiktās manipulācijas:</b></p>

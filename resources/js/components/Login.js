@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FloatingLabel, Form, Button, Card, Container } from 'react-bootstrap'
+import { toast } from 'react-toastify'
 
 const Login = ({getUser}) => {
 
@@ -8,13 +9,14 @@ const Login = ({getUser}) => {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        axios.post('/login', {
+        axios.post('login', {
             email: email,
             password: password,
         }).then((response) => {
             getUser()
+            toast.success('Jūs esat veiksmīgi ielogojies', {theme: "colored"})
         }).catch((response) => {
-            alert('Parole nav pareiza')
+            toast.error("Parole ir ievadīta nepareizi", {theme: "colored"})
         })
     }
 

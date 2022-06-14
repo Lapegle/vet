@@ -27,17 +27,17 @@ const Visits = () => {
     {headerName: 'Datums un laiks', field: 'created_at',
     cellRenderer: (data) => {
       return moment.utc(data.data.created_at).format('YYYY-MM-DD HH:mm');
-    }, width: '205px', resizable: false},
-    {headerName: 'Temperatūra', field: 'temperature', width: '160px', resizable: false, sortable: false},
-    {headerName: 'Sirds ritms', field: 'heart_rate', width: '160px', resizable: false, sortable: false},
-    {headerName: 'Elpošanas ritms', field: 'breath_rate', width: '190px', resizable: false, sortable: false},
+    }, width: 205, resizable: false},
+    {headerName: 'Temperatūra', field: 'temperature', width: 160, resizable: false, sortable: false},
+    {headerName: 'Sirds ritms', field: 'heart_rate', width: 160, resizable: false, sortable: false},
+    {headerName: 'Elpošanas ritms', field: 'breath_rate', width: 190, resizable: false, sortable: false},
     {headerName: 'Noskaņojums', field: 'mood', sortable: false},
     {headerName: 'Anamnēze', field: 'history', sortable: false},
     {headerName: 'Diagnoze', field: 'diagnosis', sortable: false},
     {headerName: 'Norādes', field: 'instructions', sortable: false},
     {headerName: 'Cena', field: 'price', cellRenderer: (data) => {
       return data.data.price + ' €';
-    }, width: '115px', resizable: false}
+    }, width: 115, resizable: false}
   ])
 
   const cellClickedListener = useCallback( event => {

@@ -1,9 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify'
 
 import { Container } from 'react-bootstrap'
 import "bootstrap-icons/font/bootstrap-icons.css"
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from './components/Header'
 
@@ -33,6 +35,7 @@ import AddManipulation from './routes/manipulations/AddManipulation'
 import EditManipulation from './routes/manipulations/EditManipulation'
 
 import Login from './components/Login';
+import ChangePassword from './routes/ChangePassword';
 
 
 
@@ -40,9 +43,6 @@ import Login from './components/Login';
 function Main() {
 
     const [user, setUser] = useState()
-
-    const [email, setEmail] = useState('test@example.com')
-    const [password, setPassword] = useState('password')
 
     useEffect(() => {
         axios.get('sanctum/csrf-cookie').then((response) => {
@@ -58,6 +58,10 @@ function Main() {
 
     return (
         <>
+        <ToastContainer
+        position="bottom-right"
+        autoClose={4200}
+        />
             {
                 user ? (
                     <BrowserRouter>
@@ -87,6 +91,8 @@ function Main() {
                             <Route path='/manipulations' element={<Manipulations />} />
                             <Route path='/manipulations/create' element={<AddManipulation />}/>
                             <Route path='/manipulations/edit/:id' element={<EditManipulation />}/>
+
+                            <Route path ='/changepassword' element={<ChangePassword setUser={setUser}/>}/>
     
                             <Route path='*' element={<NotFound />} />
                         </Routes>

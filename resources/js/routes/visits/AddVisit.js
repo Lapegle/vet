@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { React, useEffect, useState } from 'react'
 
+import { toast } from 'react-toastify'
+
 import { Button, Col, FloatingLabel, Form, Row } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom'
 
@@ -52,6 +54,7 @@ const AddVisit = () => {
               })
             })
             navigate('/visit/' + response.data.id)
+            toast.success('Jauns apmeklējums pievienots veiksmīgi', {theme: "colored"})
           })
 
 
@@ -161,7 +164,7 @@ const AddVisit = () => {
                   label='Anamnēze'
           className='text-white'
           >
-                  <Form.Control as='textarea' type='text' placeholder='Sāpes' className='form-outline bg-dark text-white'
+                  <Form.Control as='textarea' type='text' placeholder='Sāpes' className='form-outline bg-dark text-white' required
                     onChange={(e) => {setHistory(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -172,7 +175,7 @@ const AddVisit = () => {
                   label='Diagnoze'
           className='text-white'
           >
-                  <Form.Control as='textarea' type='text' placeholder='Nāve' className='form-outline bg-dark text-white'
+                  <Form.Control as='textarea' type='text' placeholder='Nāve' className='form-outline bg-dark text-white' required
                     onChange={(e) => {setDiagnosis(e.target.value)}}
                   ></Form.Control>
                 </FloatingLabel>
@@ -264,7 +267,7 @@ const AddVisit = () => {
           className='text-white'
           >
               <Form.Control type='text' placeholder='100' value={price.toFixed(2)} className='form-outline bg-dark text-white'
-                onChange={(e) => {setPrice(e.target.value)}}
+                onChange={(e) => {setPrice(parseFloat(e.target.value))}}
               ></Form.Control>
             </FloatingLabel>
           </Form.Group>

@@ -1,6 +1,8 @@
 import { React, useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 
+import { toast } from 'react-toastify'
+
 import Grid from '../../components/grids/Grid'
 import moment from 'moment'
 
@@ -20,10 +22,21 @@ const PetVisits = () => {
   const [owner, setOwner] = useState({})
   const [rowData, setRowData] = useState()
 
+  const [times, setTimes] = useState(false)
+
+  const onClick = () => {
+    if(!times){
+      toast.info('Uzspiediet divas reizes, lai izdzēstu', {theme: "colored"})
+      setTimes(true)
+    }    
+  }
 
   const deletePet= () => {
     axios.delete('/api/pets/' + id)
-    .then(navigate(-1))
+    .then((response) => {
+      navigate('/pets/owner/' + owner.id)
+      toast.warn('Dzīvnieks izdzēsts', {theme: "colored"})
+    })
   }
 
   const [columnDefs, setColumnDefs] = useState([
@@ -73,7 +86,7 @@ const PetVisits = () => {
             <Card.Body>
               <Card.Title><p className='fs-3'><strong>{pet.name}</strong>
                 <Button variant='outline-primary' className='float-end ms-2' title='Rediģēt dzīvnieka datus' onClick={() => navigate('/pets/edit/' + id)}><i className="bi bi-pencil"></i></Button>
-                <Button variant='outline-danger' className='float-end ms-2' title='Dzēst dzīvnieku' onClick={deletePet}><i className='bi bi-trash'></i></Button>
+                <Button variant='outline-danger' className='float-end ms-2' title='Dzēst dzīvnieku' onClick={onClick} onDoubleClick={deletePet}><i className='bi bi-trash'></i></Button>
               </p></Card.Title>
               <Card.Text>
                 <p>Suga: { pet.species } <br/>

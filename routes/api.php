@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('owners', [OwnerController::class, 'index']);
     Route::get('owners/{owner}', [OwnerController::class, 'show']);
     Route::get('owner/{owner}', [OwnerController::class, 'showPets']);
@@ -81,6 +81,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('visitreport', [DashboardController::class, 'visitReport']);
     Route::get('newclients', [DashboardController::class, 'newclients']);
     Route::get('popularmanipulations', [DashboardController::class, 'popularmanipulations']);
-// });
+
+    Route::put('passwordreset', function(Request $request) {
+        $user = $request->user();
+        if ( Hash::check($request->input('current_password'), $user->password)) {
+            $user->forceFill([
+                'password' => Hash::make($request->input('password')),
+            ])->save();
+            return response()->json('ok','200');
+        } else {
+            return response()->json('old password is incorrect','500');
+        }
+
+    });
+});
 
 

@@ -2,6 +2,8 @@ import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Form, Button, FloatingLabel } from 'react-bootstrap'
 
+import { toast } from 'react-toastify'
+
 const AddMedicament = () => {
 
   const navigate = useNavigate()
@@ -16,7 +18,10 @@ const AddMedicament = () => {
       price: price,
 
     })
-    .then(() => {navigate(-1)})
+    .then(() => {
+      navigate('/medicaments')
+      toast.success('Jauns medikaments pievienots veiksmīgi', {theme: "colored"})
+    })
   }
 
   return (
@@ -31,7 +36,7 @@ const AddMedicament = () => {
                 label='Medikamenta nosaukums'
           className='text-white'
           >
-                <Form.Control type='text' placeholder='Paracetamol' className='form-outline bg-dark text-white'
+                <Form.Control type='text' placeholder='Paracetamol' className='form-outline bg-dark text-white' required
                   onChange={(e) => {setName(e.target.value)}}
                 ></Form.Control>
               </FloatingLabel>
@@ -43,8 +48,8 @@ const AddMedicament = () => {
               label='Medikamenta cena'
           className='text-white'
           >
-              <Form.Control type='text' placeholder='100' className='form-outline bg-dark text-white'
-                onChange={(e) => {setPrice(e.target.value)}}
+              <Form.Control type='text' placeholder='100' className='form-outline bg-dark text-white' required
+                onChange={(e) => {setPrice(parseFloat(e.target.value).toFixed(2))}}
               ></Form.Control>
             </FloatingLabel>
           </Form.Group>

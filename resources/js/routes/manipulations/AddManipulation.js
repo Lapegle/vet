@@ -2,6 +2,8 @@ import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Form, Button, FloatingLabel } from 'react-bootstrap'
 
+import { toast } from 'react-toastify'
+
 const AddManipulation = () => {
 
 
@@ -17,12 +19,15 @@ const AddManipulation = () => {
       price: price,
 
     })
-    .then(() => {navigate(-1)})
+    .then(() => {
+      navigate('/manipulations')
+      toast.success('Jauna manipulācija pievienota veiksmīgi', {theme: "colored"})
+    })
   }
 
   return (
     <>
-      <h2 className='mb-4 text-center'>Pievienot jaunu manipulāciju</h2>
+      <h2 className='mb-4 text-center text-white'>Pievienot jaunu manipulāciju</h2>
       <div className='d-flex justify-content-center'>
         <Form onSubmit={submit} className="w-50">
 
@@ -32,7 +37,7 @@ const AddManipulation = () => {
                 label='Manipulācijas nosaukums'
           className='text-white'
           >
-                <Form.Control type='text' placeholder='Sterilizācija' className='form-outline bg-dark text-white'
+                <Form.Control type='text' placeholder='Sterilizācija' className='form-outline bg-dark text-white' required
                   onChange={(e) => {setName(e.target.value)}}
                 ></Form.Control>
               </FloatingLabel>
@@ -44,8 +49,8 @@ const AddManipulation = () => {
               label='Manipulācijas cena'
           className='text-white'
           >
-              <Form.Control type='text' placeholder='100' className='form-outline bg-dark text-white'
-                onChange={(e) => {setPrice(e.target.value)}}
+              <Form.Control type='text' placeholder='100' className='form-outline bg-dark text-white' required
+                onChange={(e) => {setPrice(parseFloat(e.target.value).toFixed(2))}}
               ></Form.Control>
             </FloatingLabel>
           </Form.Group>

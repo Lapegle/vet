@@ -3,6 +3,7 @@ import { React, useState } from 'react'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
+import { toast } from 'react-toastify'
 
 const AddOwner = () => {
 
@@ -21,8 +22,9 @@ const AddOwner = () => {
     })
     .then((response) => {
       navigate('/pets/owner/' + response.data.id)
+      toast.success('Klients pievienots veiksmīgi', {theme: "colored"})
     }).catch(() => {
-      alert('error')
+      toast.error('Radās kļūda mēģinot pievienot jaunu klientu', {theme: "colored"})
     })
 
   }
@@ -38,7 +40,7 @@ const AddOwner = () => {
           label='Vārds un uzvārds'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Jānis Bērziņš' className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='Jānis Bērziņš' className='form-outline bg-dark text-white' required
             onChange={(e) => {setName(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -49,7 +51,7 @@ const AddOwner = () => {
           label='Adrese'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Varoņu iela 11A, Rēzekne' className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='Varoņu iela 11A, Rēzekne' className='form-outline bg-dark text-white' required
             onChange={(e) => {setAddress(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -60,7 +62,7 @@ const AddOwner = () => {
           label='Telefona numurs'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='20000000' className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='20000000' className='form-outline bg-dark text-white' required
             onChange={(e) => {setPhone(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
