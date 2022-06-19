@@ -28,25 +28,25 @@ const Grid = (props) => {
        <div>
 
      {/* On div wrapping Grid a) specify theme CSS Class Class and b) sets Grid size */}
-     <div className="ag-theme-alpine-dark shadow" style={{width: '100%', height: 603}}>
+     <div className="ag-theme-alpine-dark shadow" style={{width: '100%', height: '67vh'}}>
 
        <AgGridReact 
-           ref={gridRef} // Ref for accessing Grid's API
+           ref={gridRef} // Reference priekš Grid API
            
-           localeText={AG_GRID_LOCALE_LV}
+           localeText={AG_GRID_LOCALE_LV} // Tulkojums latviešu valodā
 
-           rowData={props.rowData} // Row Data for Rows
+           rowData={props.rowData} // ReactProps kā ierakstu masīvs
 
-           columnDefs={props.columnDefs} // Column Defs for Columns
-           defaultColDef={defaultColDef} // Default Column Properties
+           columnDefs={props.columnDefs} // ReactProps kā kolonnu opciju definešana
+           defaultColDef={defaultColDef} // Noklusējuma kolonnu opcijas
 
-           animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+           animateRows={true} // Rindu animācija
 
-           onFirstDataRendered={onFirstDataRendered}
+           onFirstDataRendered={onFirstDataRendered} // Event, kas izpildās, kad tabulas dati ir ielādēti
 
-           onCellClicked={props.cellClickedListener} // Optional - registering for Grid Event
+           onCellClicked={props.cellClickedListener} // ReactProps funkcija, kas atbild par klikšķi uz ieraksta
 
-           paginationAutoPageSize={true}
+           paginationAutoPageSize={true} //Paginācija
            pagination={true}
 
            />

@@ -11,9 +11,6 @@ class Pet extends Model
 
     protected $fillable = ['name', 'owner_id', 'birth_date', 'sex', 'species', 'breed', 'colour', 'microchip'];
 
-//    protected $with = ['owner_id'];
-
-
     public function visits()
     {
         return $this->hasMany(Visit::class);

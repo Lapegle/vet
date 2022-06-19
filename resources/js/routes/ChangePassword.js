@@ -18,6 +18,7 @@ const ChangePassword = ({setUser}) => {
         }).then((response) => {
             axios.post('/logout').then((response) => {
                 setUser(null)
+                toast.info("Parole ir nomainīta veiksmīgi, ielogojieties par jaunu", {theme: "colored"})
             })
         }).catch((response) => {
             toast.warn("Vecā parole ir ievadīta nepareizi", {theme: "colored"})

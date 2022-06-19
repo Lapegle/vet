@@ -10,22 +10,22 @@ import axios from 'axios'
 
 const Owners = () => {
 
-  
   const navigate = useNavigate();
-
   const [rowData, setRowData] = useState()
-  
 
+  //Kolonnu definīcija
   const [columnDefs, setColumnDefs] = useState([
     {headerName: 'Vārds un uzvārds', field: 'name', filter: true},
     {headerName: 'Adrese', field: 'address'},
     {headerName: 'Telefona numurs', field: 'phone', filter: true}
   ])
 
+  //Klikšķa uz ieraksta apstrāde
   const cellClickedListener = useCallback( event => {
     navigate('/pets/owner/' + event.data.id )
   }, []);
 
+  //Datu savākšana no API lapas ielādes sākumā
   useEffect(() => {
     axios.get('/api/owners').then((response) => {
       setRowData(response.data)

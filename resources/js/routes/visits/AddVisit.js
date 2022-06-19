@@ -56,14 +56,6 @@ const AddVisit = () => {
             navigate('/visit/' + response.data.id)
             toast.success('Jauns apmeklējums pievienots veiksmīgi', {theme: "colored"})
           })
-
-
-        //   .then((response) => {
-        //     navigate('/visits/pet/' + response.data.id)
-        //   })
-        // .then((response) => {
-        //     navigate(-1)
-        // })
     }
 
     const addMedicaments = (e) => {
@@ -238,15 +230,18 @@ const AddVisit = () => {
               controlId='medicaments'
               label='Medikamenti'
               onChange={(e) => addMedicaments(e)}
-          className='text-white'
-          >
-              <Form.Select placeholder='Paracetamol' className='form-outline bg-dark text-white' value='default'
+              className='text-white'
+            >
+              <Form.Select 
+              placeholder='Paracetamol' 
+              className='form-outline bg-dark text-white' 
+              value='default'
               >
                 <option value='default' disabled>Izvēlaties medikamentus</option>
-              { medicamentList.map((value) => {
-                  return <option key={value.id} value={value.id}>{value.name} - {value.price} €</option>
-                }) 
-              }
+                { medicamentList.map((value) => {
+                    return <option key={value.id} value={value.id}>{value.name} - {value.price} €</option>
+                  }) 
+                }
               </Form.Select>
             </FloatingLabel>
           </Form.Group>
@@ -254,9 +249,15 @@ const AddVisit = () => {
           <ul>
           {medicaments.map((value) => {
             
-            return <li className='mb-2 text-white'>{medicamentList.find(x => x.id == value).name} {medicamentList.find(x => x.id == value).price} €
-            <Button onClick={() => deleteMedicament(value)} variant='outline-danger' size='sm' className='ms-2' title='Dzēst medikamentu'><i className='bi bi-trash'></i></Button></li> 
-
+            return <li className='mb-2 text-white'>
+              {medicamentList.find(x => x.id == value).name} 
+              {medicamentList.find(x => x.id == value).price} €
+              <Button onClick={() => deleteMedicament(value)}
+              variant='outline-danger' size='sm' className='ms-2'
+              title='Dzēst medikamentu'>
+                <i className='bi bi-trash'></i>
+              </Button>
+            </li> 
           })}
           </ul>
 
@@ -264,8 +265,8 @@ const AddVisit = () => {
             <FloatingLabel
               controlId='price'
               label='Pakalpojumu cena (€)'
-          className='text-white'
-          >
+            className='text-white'
+            >
               <Form.Control type='text' placeholder='100' value={price.toFixed(2)} className='form-outline bg-dark text-white'
                 onChange={(e) => {setPrice(parseFloat(e.target.value))}}
               ></Form.Control>

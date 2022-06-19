@@ -50,7 +50,7 @@ const AddPet = () => {
           label='Dzīvnieka vārds'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Jānis Bērziņš' className='form-outline bg-dark text-white' required
+          <Form.Control type='text' placeholder='Jānis Bērziņš' className='form-outline bg-dark text-white' required maxLength={45}
             onChange={(e) => {setName(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -86,7 +86,7 @@ const AddPet = () => {
           label='Dzīvnieka suga'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Suns' className='form-outline bg-dark text-white' required
+          <Form.Control type='text' placeholder='Suns' className='form-outline bg-dark text-white' required maxLength={45}
             onChange={(e) => {setSpecies(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -97,7 +97,7 @@ const AddPet = () => {
           label='Dzīvnieka šķirne'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Labradors' className='form-outline bg-dark text-white' required
+          <Form.Control type='text' placeholder='Labradors' className='form-outline bg-dark text-white' required maxLength={45}
             onChange={(e) => {setBreed(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -108,7 +108,7 @@ const AddPet = () => {
           label='Dzīvnieka krāsa'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='Zeltaina' className='form-outline bg-dark text-white' required
+          <Form.Control type='text' placeholder='Zeltaina' className='form-outline bg-dark text-white' required maxLength={45}
             onChange={(e) => {setColour(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
@@ -119,12 +119,12 @@ const AddPet = () => {
           label='Dzīvnieka čipa numurs'
           className='text-white'
           >
-          <Form.Control type='text' placeholder='1234567812345678' className='form-outline bg-dark text-white'
+          <Form.Control type='text' placeholder='1234567812345678' className='form-outline bg-dark text-white' maxLength={16}
             onChange={(e) => {setMicrochip(e.target.value)}}
           ></Form.Control>
         </FloatingLabel>
       </Form.Group>
-      <Button type='submit' variant='primary'className='float-end ms-2'>Pievienot</Button>
+      <Button type='submit' variant='outline-primary'className='float-end ms-2'>Pievienot</Button>
       <Button className='float-end ms-2' onClick={() => {navigate(-1)}} variant='outline-secondary'>Atpakaļ</Button>
     </Form>
     </div>

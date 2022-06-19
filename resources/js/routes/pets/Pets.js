@@ -11,11 +11,11 @@ const Pets = () => {
 
   const [columnDefs, setColumnDefs] = useState([
     {headerName: 'Vārds', field: 'name', filter: true},
-    {headerName: 'Dzimšanas datums', field: 'birth_date'},
-    {headerName: 'Dzimums', field: 'sex'},
-    {headerName: 'Suga', field: 'species'},
-    {headerName: 'Šķirne', field: 'breed'},
-    {headerName: 'Krāsa', field: 'colour'},
+    {headerName: 'Dzimšanas datums', field: 'birth_date', filter: true},
+    {headerName: 'Dzimums', field: 'sex', filter: true},
+    {headerName: 'Suga', field: 'species', filter: true},
+    {headerName: 'Šķirne', field: 'breed', filter: true},
+    {headerName: 'Krāsa', field: 'colour', filter: true},
     {headerName: 'Čipa numurs', field: 'microchip', filter: true}
   ])
 
