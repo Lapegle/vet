@@ -39,10 +39,11 @@ class DashboardController extends Controller
         return DB::select("
             select date(created_at) AS date, count(id) AS count
             from owners
-            WHERE date(created_at) >= DATE_SUB(NOW(), INTERVAL 8 DAY)
+            WHERE date(created_at) >= NOW() - INTERVAL 8 'DAY'
             GROUP BY date(created_at)
             ORDER BY date
             ");
+
     }
 
     public function popularmanipulations() {
