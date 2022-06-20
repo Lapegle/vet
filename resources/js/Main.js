@@ -45,13 +45,13 @@ function Main() {
     const [password, setPassword] = useState('password')
 
     useEffect(() => {
-        axios.get('https://danielsvet.herokuapp.com/sanctum/csrf-cookie').then((response) => {
+        axios.get('sanctum/csrf-cookie').then((response) => {
             getUser()
         })
     }, [])
 
     const getUser = () => {
-        axios.get('https://danielsvet.herokuapp.com/api/user').then((response) => {
+        axios.get('api/user').then((response) => {
             setUser(response.data)
         })
     }
