@@ -13,7 +13,7 @@ try {
 
 window.axios = require('axios');
 window.axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
-window.axios.defaults.baseURL = window.location.origin+window.location.pathname
+window.axios.defaults.baseURL = 'http://danielsvet.herokuapp.com/'
 window.axios.defaults.withCredentials = true
 
 
