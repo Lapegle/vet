@@ -55,7 +55,6 @@ const EditVisit = () => {
           visit_id: id,
           medicament_id: value
         })
-      toast.success('Apmeklējuma dati rediģēti veiksmīgi', {theme: "colored"})
       })
       // .then((response) => {
       //   medicaments.forEach(value => {
@@ -72,6 +71,7 @@ const EditVisit = () => {
       //   })
       //   navigate('/visit/' + response.data.id)
       // })
+      toast.success('Apmeklējuma dati rediģēti veiksmīgi', {theme: "colored"})
       navigate(-1)
   }  
 
