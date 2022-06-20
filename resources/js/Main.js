@@ -48,6 +48,7 @@ function Main() {
         axios.get('sanctum/csrf-cookie').then((response) => {
             getUser()
         })
+        console.log(window.location.origin+window.location.pathname)
     }, [])
 
     const getUser = () => {
