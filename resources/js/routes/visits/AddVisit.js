@@ -250,8 +250,7 @@ const AddVisit = () => {
           {medicaments.map((value) => {
             
             return <li className='mb-2 text-white'>
-              {medicamentList.find(x => x.id == value).name} 
-              {medicamentList.find(x => x.id == value).price} €
+              {medicamentList.find(x => x.id == value).name} {medicamentList.find(x => x.id == value).price} €
               <Button onClick={() => deleteMedicament(value)}
               variant='outline-danger' size='sm' className='ms-2'
               title='Dzēst medikamentu'>
