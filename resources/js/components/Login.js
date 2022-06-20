@@ -25,7 +25,7 @@ const Login = ({getUser}) => {
                 <Card.Body>
                     <Form onSubmit={handleLogin}>
                     <img className='zoom my-5 mx-auto d-block' src='/assets/logo-big.svg' alt='logo' />
-                        <h2 className='text-center mb-3 text-white'>Ielogoties sistēmā</h2>
+                        <h2 className='text-center mb-3 text-white'>Ielogoties sistēmā hoe</h2>
                         <Form.Group className="mb-3" controlId='password'>
                             <FloatingLabel
                                 controlId='password'
