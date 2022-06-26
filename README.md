@@ -1,4 +1,5 @@
 # Skolas diplomdarba projekts - Vetārsta prakses darba uzskaites sistēma
+https://danielsvet.herokuapp.com/
 
 ## Lai palaistu nepieciešams:
 * PHP vismaz 8.1
