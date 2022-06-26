@@ -14,7 +14,7 @@ palaist terminālī mapes root daļā komandas
 
 `npm install`
 
-`php artisan migrate db:seed`
+`php artisan migrate --seed`
 
 `npm run dev`
 
